@@ -163,23 +163,32 @@ async function createCatalog({ writeFiles }) {
 
 async function getThemeScreenshots(id) {
   const screenshots = {};
-  const screenshotEntries = [
-    ["library", `${id}-library.png`],
-    ["reader", `${id}-reader.png`]
-  ];
+  const screenshotEntries = ["library", "reader"];
 
-  for (const [key, fileName] of screenshotEntries) {
-    const screenshotPath = path.join(publicScreenshotsDir, fileName);
+  for (const key of screenshotEntries) {
+    const fileName = await getThemeScreenshotFileName(id, key);
+
+    if (fileName) {
+      screenshots[key] = `/screenshots/${fileName}`;
+    }
+  }
+
+  return screenshots;
+}
+
+async function getThemeScreenshotFileName(id, view) {
+  for (const extension of ["jpg", "jpeg", "png"]) {
+    const fileName = `${id}-${view}.${extension}`;
 
     try {
-      await fs.access(screenshotPath);
-      screenshots[key] = `/screenshots/${fileName}`;
+      await fs.access(path.join(publicScreenshotsDir, fileName));
+      return fileName;
     } catch {
       // Screenshots are optional generated assets.
     }
   }
 
-  return screenshots;
+  return "";
 }
 
 async function writeThemePages(themes) {

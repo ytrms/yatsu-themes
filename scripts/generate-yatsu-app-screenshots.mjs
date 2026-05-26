@@ -23,6 +23,13 @@ const screenshotViewport = {
   width: Number(process.env.YATSU_SCREENSHOT_WIDTH || 1280),
   height: Number(process.env.YATSU_SCREENSHOT_HEIGHT || 900)
 };
+const screenshotImageExtension = "jpg";
+const screenshotImageType = "jpeg";
+const screenshotJpegQuality = clampInteger(Number(process.env.YATSU_SCREENSHOT_JPEG_QUALITY || 86), {
+  fallback: 86,
+  max: 100,
+  min: 1
+});
 const screenshotAccountState = {
   auth: {
     isConfigured: true,
@@ -130,7 +137,7 @@ async function main() {
         await captureLibraryScreenshot(page, {
           appUrl: appServer.url,
           bookCount: bookIds.length,
-          path: path.join(screenshotsDir, `${theme.id}-library.png`),
+          path: getScreenshotPath(theme.id, "library"),
           theme
         });
         screenshotCount += 1;
@@ -140,7 +147,7 @@ async function main() {
         await captureReaderScreenshot(page, {
           appUrl: appServer.url,
           bookId: bookIds[0],
-          path: path.join(screenshotsDir, `${theme.id}-reader.png`),
+          path: getScreenshotPath(theme.id, "reader"),
           theme
         });
         screenshotCount += 1;
@@ -190,7 +197,7 @@ async function getThemesWithPendingScreenshots(themes) {
     const pendingViews = new Set();
 
     for (const view of ["library", "reader"]) {
-      const screenshotPath = path.join(screenshotsDir, `${theme.id}-${view}.png`);
+      const screenshotPath = getScreenshotPath(theme.id, view);
 
       if (force || !(await fileExists(screenshotPath))) {
         pendingViews.add(view);
@@ -763,7 +770,9 @@ async function captureLibraryScreenshot(page, { appUrl, bookCount, path: screens
   await page.screenshot({
     animations: "disabled",
     fullPage: false,
-    path: screenshotPath
+    quality: screenshotJpegQuality,
+    path: screenshotPath,
+    type: screenshotImageType
   });
 }
 
@@ -782,7 +791,9 @@ async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotP
   await page.screenshot({
     animations: "disabled",
     fullPage: false,
-    path: screenshotPath
+    quality: screenshotJpegQuality,
+    path: screenshotPath,
+    type: screenshotImageType
   });
 }
 
@@ -1286,6 +1297,18 @@ async function findFiles(dir, predicate) {
   }
 
   return files;
+}
+
+function getScreenshotPath(themeId, view) {
+  return path.join(screenshotsDir, `${themeId}-${view}.${screenshotImageExtension}`);
+}
+
+function clampInteger(value, { fallback, max, min }) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  return Math.max(min, Math.min(max, Math.round(value)));
 }
 
 async function fileExists(filePath) {

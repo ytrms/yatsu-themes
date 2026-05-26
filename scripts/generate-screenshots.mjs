@@ -15,6 +15,13 @@ const onlyThemeIds = process.argv
   .filter((argument) => argument.startsWith("--theme="))
   .map((argument) => argument.slice("--theme=".length).trim())
   .filter(Boolean);
+const screenshotImageExtension = "jpg";
+const screenshotImageType = "jpeg";
+const screenshotJpegQuality = clampInteger(Number(process.env.YATSU_SCREENSHOT_JPEG_QUALITY || 86), {
+  fallback: 86,
+  max: 100,
+  min: 1
+});
 
 await main();
 
@@ -78,7 +85,7 @@ async function loadPlaywright() {
 }
 
 async function captureThemeScreenshot(page, theme, books, view) {
-  const screenshotPath = path.join(screenshotsDir, `${theme.id}-${view}.png`);
+  const screenshotPath = getScreenshotPath(theme.id, view);
 
   if (!force && (await fileExists(screenshotPath))) {
     return;
@@ -91,7 +98,9 @@ async function captureThemeScreenshot(page, theme, books, view) {
   await page.screenshot({
     animations: "disabled",
     fullPage: false,
-    path: screenshotPath
+    path: screenshotPath,
+    quality: screenshotJpegQuality,
+    type: screenshotImageType
   });
 }
 
@@ -688,6 +697,18 @@ function getImageMediaType(filePath) {
   }
 
   return "image/jpeg";
+}
+
+function getScreenshotPath(themeId, view) {
+  return path.join(screenshotsDir, `${themeId}-${view}.${screenshotImageExtension}`);
+}
+
+function clampInteger(value, { fallback, max, min }) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  return Math.max(min, Math.min(max, Math.round(value)));
 }
 
 function fallbackBooks() {

@@ -68,8 +68,8 @@
         }
       },
       "screenshots": {
-        "library": "/screenshots/bocchi-library.png",
-        "reader": "/screenshots/bocchi-reader.png"
+        "library": "/screenshots/bocchi-library.jpg",
+        "reader": "/screenshots/bocchi-reader.jpg"
       },
       "hasBackgroundImages": true,
       "hasScreenshots": true,
