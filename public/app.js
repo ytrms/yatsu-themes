@@ -11,6 +11,7 @@ const detailsDialogSwatches = document.querySelector("#theme-details-swatches");
 const detailsDialogList = document.querySelector("#theme-details-list");
 const detailsDialogDownload = document.querySelector("#theme-details-download");
 const detailsDialogClose = document.querySelector(".dialog-close");
+const installToast = document.querySelector("#install-toast");
 
 const sampleBooks = [
   "吾輩は猫である",
@@ -32,6 +33,8 @@ const swatchKeys = [
 
 let catalog = { themes: [], generatedAt: "" };
 let activeMode = "all";
+let installToastTimer;
+let installToastHiddenTimer;
 
 init();
 
@@ -54,6 +57,11 @@ async function init() {
 
 function wireControls() {
   searchInput.addEventListener("input", render);
+  document.addEventListener("click", (event) => {
+    if (isThemeDownloadClick(event.target)) {
+      showInstallToast();
+    }
+  });
   detailsDialogClose.addEventListener("click", () => detailsDialog.close());
   detailsDialog.addEventListener("click", (event) => {
     if (event.target === detailsDialog) {
@@ -169,6 +177,34 @@ function renderThemeCard(theme) {
 
 function isCardClickIgnored(target) {
   return Boolean(target.closest("a[download], .preview-arrow"));
+}
+
+function isThemeDownloadClick(target) {
+  if (!(target instanceof Element)) {
+    return false;
+  }
+
+  const link = target.closest("a[download]");
+  return Boolean(link?.download?.endsWith(".yatsutheme"));
+}
+
+function showInstallToast() {
+  if (!installToast) {
+    return;
+  }
+
+  window.clearTimeout(installToastTimer);
+  window.clearTimeout(installToastHiddenTimer);
+  installToast.hidden = false;
+  window.setTimeout(() => {
+    installToast.classList.add("is-visible");
+  }, 0);
+  installToastTimer = window.setTimeout(() => {
+    installToast.classList.remove("is-visible");
+    installToastHiddenTimer = window.setTimeout(() => {
+      installToast.hidden = true;
+    }, 180);
+  }, 5200);
 }
 
 function createThemePreview(theme, className = "") {
