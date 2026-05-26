@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generatedAt": "",
-  "themeCount": 1,
+  "themeCount": 2,
   "themes": [
     {
       "id": "bocchi",
@@ -112,6 +112,93 @@
         {
           "key": "highlightPinkColor",
           "color": "rgba(255, 148, 201, 0.4)"
+        }
+      ]
+    },
+    {
+      "id": "momoaji",
+      "name": "MOMOaji",
+      "author": "ryzusaku",
+      "description": "Dark minimalistic pink-flavored theme.",
+      "fileName": "momoaji.yatsutheme",
+      "downloadUrl": "/themes/momoaji.yatsutheme",
+      "sizeBytes": 612,
+      "contentHash": "e05dd99ccfa8ca01",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(255, 255, 255, 1)",
+        "backgroundColor": "rgba(31, 27, 30, 1)",
+        "accentColor": "rgba(255, 207, 220, 1)",
+        "accentTextColor": "rgba(88, 75, 83, 1)",
+        "linkColor": "rgba(255, 255, 255, 1)",
+        "mutedTextColor": "rgba(221, 215, 219, 0.7)",
+        "readerChromeBackgroundColor": "rgba(88, 75, 83, 0.5)",
+        "readerChromeBorderColor": "rgba(88, 75, 83, 0.7)",
+        "selectionFontColor": "rgba(31, 27, 30, 0.98)",
+        "selectionBackgroundColor": "rgba(255, 207, 220, 1)",
+        "hintFuriganaShadowColor": "rgba(0, 0, 0, 0)",
+        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.37)",
+        "tooltipTextFontColor": "rgba(221, 215, 219, 1)",
+        "highlightYellowColor": "rgba(244, 208, 111, 0.5)",
+        "highlightGreenColor": "rgba(156, 227, 125, 0.5)",
+        "highlightBlueColor": "rgba(109, 177, 191, 0.5)",
+        "highlightPinkColor": "rgba(255, 163, 175, 0.5)",
+        "highlightPurpleColor": "rgba(128, 93, 147, 0.5)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/momoaji-library.jpg",
+        "reader": "/screenshots/momoaji-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(31, 27, 30, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(255, 255, 255, 1)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(255, 207, 220, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(255, 255, 255, 1)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(255, 207, 220, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(244, 208, 111, 0.5)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(109, 177, 191, 0.5)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(255, 163, 175, 0.5)"
         }
       ]
     }
