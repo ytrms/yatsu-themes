@@ -5,7 +5,7 @@ import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const publicDir = path.join(rootDir, "public");
+const publicDir = path.join(rootDir, "docs");
 const catalogPath = path.join(publicDir, "catalog.json");
 const screenshotsDir = path.join(publicDir, "screenshots");
 const sampleBooksDir = path.join(rootDir, "sample-books");

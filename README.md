@@ -46,14 +46,14 @@ all highlighter colors, an active text selection, and the table of contents pane
 
 `sample-books/` is intentionally ignored by git. Keep local EPUB fixtures there
 when regenerating screenshots; the published site uses the checked-in images in
-`public/screenshots/`.
+`docs/screenshots/`.
 
 ```text
-public/screenshots/<theme-id>-library.png
-public/screenshots/<theme-id>-reader.png
+docs/screenshots/<theme-id>-library.png
+docs/screenshots/<theme-id>-reader.png
 ```
 
-It runs the catalog build before and after capture so `public/catalog.json`
+It runs the catalog build before and after capture so `docs/catalog.json`
 points at the generated screenshots. Use `npm run build` after deleting
 screenshots if you want the website to fall back to live HTML previews.
 
@@ -82,6 +82,7 @@ npm run build
 
 ## GitHub Pages
 
-The repository includes a GitHub Pages workflow that builds `public/` and
-deploys it. Configure the Pages custom domain as `themes.yatsu.moe`, then point
-the DNS `CNAME` for `themes` at the relevant `github.io` Pages host.
+GitHub Pages is configured to publish the checked-in `/docs` folder from
+`main`, so every push to `main` deploys the current static site. Configure the
+Pages custom domain as `themes.yatsu.moe`, then point the DNS `CNAME` for
+`themes` at the relevant `github.io` Pages host.

@@ -7,7 +7,7 @@ import { DEFAULT_LIGHT_THEME, THEME_COLOR_KEYS } from "./default-yatsu-themes.mj
 
 const rootDir = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const themesDir = path.join(rootDir, "themes");
-const publicDir = path.join(rootDir, "public");
+const publicDir = path.join(rootDir, "docs");
 const publicThemesDir = path.join(publicDir, "themes");
 const publicAssetsDir = path.join(publicDir, "theme-assets");
 const publicScreenshotsDir = path.join(publicDir, "screenshots");
@@ -46,7 +46,7 @@ async function main() {
     const currentJson = await fs.readFile(catalogPath, "utf8").catch(() => "");
 
     if (currentJson !== nextJson) {
-      throw new Error("public/catalog.json is out of date. Run npm run build.");
+      throw new Error("docs/catalog.json is out of date. Run npm run build.");
     }
 
     console.log(`Catalog is up to date with ${catalog.themes.length} themes.`);

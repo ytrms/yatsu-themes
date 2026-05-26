@@ -7,7 +7,7 @@
     "bootstrap": "node scripts/bootstrap-default-themes.mjs",
     "build": "node scripts/generate-catalog.mjs",
     "check": "node scripts/generate-catalog.mjs --check",
-    "preview": "python3 -m http.server 4174 --directory public",
+    "preview": "python3 -m http.server 4174 --directory docs",
     "screenshots": "node scripts/generate-yatsu-app-screenshots.mjs",
     "screenshots:static": "node scripts/generate-screenshots.mjs"
   },
