@@ -1,0 +1,12 @@
+{
+  "name": "Dark",
+  "slug": "dark-theme",
+  "description": "A deeper low-brightness theme for dim reading environments.",
+  "author": "Yatsu",
+  "updatedAt": "2026-05-25T00:00:00.000Z",
+  "tags": [
+    "built-in",
+    "dark",
+    "low-glare"
+  ]
+}

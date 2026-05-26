@@ -1,0 +1,12 @@
+{
+  "name": "Gray",
+  "slug": "gray-theme",
+  "description": "Yatsu's default dark theme with readable contrast and soft chrome.",
+  "author": "Yatsu",
+  "updatedAt": "2026-05-25T00:00:00.000Z",
+  "tags": [
+    "built-in",
+    "dark",
+    "default"
+  ]
+}

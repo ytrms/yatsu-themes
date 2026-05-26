@@ -1,0 +1,17 @@
+{
+  "name": "yatsu-themes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap-default-themes.mjs",
+    "build": "node scripts/generate-catalog.mjs",
+    "check": "node scripts/generate-catalog.mjs --check",
+    "preview": "python3 -m http.server 4174 --directory public",
+    "screenshots": "node scripts/generate-yatsu-app-screenshots.mjs",
+    "screenshots:static": "node scripts/generate-screenshots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.57.0"
+  }
+}

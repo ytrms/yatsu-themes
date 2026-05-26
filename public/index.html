@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#37474f" />
+    <meta
+      name="description"
+      content="A curated collection of downloadable Yatsu Reader themes."
+    />
+    <title>Yatsu Themes</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header has-logo" data-header>
+      <a class="header-logo" href="/" aria-label="Yatsu Themes home" data-header-logo>
+        <img class="header-logo-compact" src="/assets/ya-mark.svg" alt="" draggable="false" />
+        <img class="header-logo-wide" src="/assets/yatsu-mark.svg" alt="" draggable="false" />
+      </a>
+      <nav class="header-actions" aria-label="Primary">
+        <a class="header-link" href="https://docs.yatsu.moe">Docs</a>
+        <a class="app-button app-button-small" href="https://app.yatsu.moe">Go to app</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="catalog-toolbar" aria-labelledby="catalog-title">
+        <div class="catalog-heading">
+          <h1 id="catalog-title">Browse Yatsu themes</h1>
+        </div>
+
+        <div class="catalog-controls" aria-label="Catalog controls">
+          <label class="search-field">
+            <span>Search</span>
+            <input id="search" type="search" autocomplete="off" placeholder="Theme, tag, author" />
+          </label>
+          <div class="segmented-control" role="group" aria-label="Filter by mode">
+            <button class="segment is-active" type="button" data-mode="all">All</button>
+            <button class="segment" type="button" data-mode="light">Light</button>
+            <button class="segment" type="button" data-mode="dark">Dark</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-status" aria-live="polite">
+        <span id="catalog-count">Loading themes...</span>
+      </section>
+
+      <section id="theme-grid" class="theme-grid" aria-label="Themes"></section>
+    </main>
+
+    <dialog id="theme-details-dialog" class="theme-dialog" aria-labelledby="theme-details-title">
+      <div class="theme-dialog-panel">
+        <div class="theme-dialog-layout">
+          <div id="theme-details-preview" class="theme-dialog-preview"></div>
+          <div class="theme-dialog-content">
+            <header class="theme-dialog-header">
+              <div>
+                <p class="theme-dialog-eyebrow">Theme details</p>
+                <h2 id="theme-details-title"></h2>
+              </div>
+              <button class="dialog-close" type="button" aria-label="Close details">×</button>
+            </header>
+            <p id="theme-details-description" class="theme-dialog-description"></p>
+            <div id="theme-details-swatches" class="theme-swatches theme-dialog-swatches" aria-label="Theme colors"></div>
+            <dl id="theme-details-list" class="theme-dialog-list"></dl>
+            <div class="theme-dialog-actions">
+              <a id="theme-details-download" class="button primary" download>Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="theme-card-template">
+      <article class="theme-card">
+        <div class="theme-preview" data-preview-index="0">
+          <button
+            class="preview-arrow preview-arrow-previous"
+            type="button"
+            aria-label="Show library preview"
+          >
+            ‹
+          </button>
+          <div class="preview-viewport" aria-hidden="true">
+            <div class="preview-track">
+              <div class="preview-slide">
+                <div class="mock-shell">
+                  <div class="mock-topbar">
+                    <span class="mock-logo">ッ</span>
+                    <span class="mock-tab"></span>
+                    <span class="mock-icon"></span>
+                    <span class="mock-icon"></span>
+                  </div>
+                  <div class="mock-content mock-content-reader">
+                    <div class="mock-reader">
+                      <div class="mock-reader-toolbar">
+                        <span>Page 12 of 48</span>
+                        <span>Saved</span>
+                      </div>
+                      <p class="mock-copy jp">吾輩は猫である。名前はまだ無い。</p>
+                      <p class="mock-copy jp">どこで生れたかとんと見当がつかぬ。</p>
+                      <p class="mock-copy jp">何でも薄暗いじめじめした所で泣いていた事だけは記憶している。</p>
+                      <p class="mock-copy selection">青い空の下で、物語は静かに続いていく。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-slide">
+                <div class="mock-shell">
+                  <div class="mock-topbar">
+                    <span class="mock-logo">ッ</span>
+                    <span class="mock-tab"></span>
+                    <span class="mock-icon"></span>
+                    <span class="mock-icon"></span>
+                  </div>
+                  <div class="mock-content mock-content-library">
+                    <div class="mock-library">
+                      <div class="mock-section-title">Library</div>
+                      <div class="mock-books"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="preview-arrow preview-arrow-next"
+            type="button"
+            aria-label="Show library preview"
+          >
+            ›
+          </button>
+          <div class="preview-indicators" aria-hidden="true">
+            <span class="is-active"></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="theme-card-body">
+          <div class="theme-card-title-row">
+            <div>
+              <h2></h2>
+            </div>
+            <span class="theme-mode-pill"></span>
+          </div>
+          <p class="theme-description"></p>
+          <div class="theme-swatches" aria-label="Theme colors"></div>
+          <div class="theme-meta"></div>
+          <div class="theme-actions">
+            <a class="button primary" download>Download</a>
+            <button class="button ghost details-toggle" type="button">Details</button>
+          </div>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>
