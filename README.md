@@ -41,8 +41,8 @@ npm run screenshots -- --force
 The screenshot harness starts the sibling Yatsu app from `../ebook-reader`,
 imports local EPUBs in `sample-books/` through Yatsu's own import code, applies
 each theme through Yatsu's theme importer, and captures the real `/library` and
-`/b` reader routes. The reader screenshot includes a Yatsu-rendered highlight
-and an active text selection.
+`/b` reader routes. The reader screenshot includes Yatsu-rendered highlights for
+all highlighter colors, an active text selection, and the table of contents panel.
 
 `sample-books/` is intentionally ignored by git. Keep local EPUB fixtures there
 when regenerating screenshots; the published site uses the checked-in images in

@@ -389,34 +389,49 @@ async function applyTheme(page, { appUrl, themeAsset, themeId }) {
   );
 }
 
-async function paintReaderHighlight(page, { bookId }) {
+async function paintReaderHighlights(page, { bookId }) {
   await page.evaluate(async ({ currentBookId }) => {
-    const [highlightManager, store] = await Promise.all([
+    const [highlightManager, highlightColorData, store] = await Promise.all([
       import("/src/lib/components/book-reader/highlight-manager.ts"),
+      import("/src/lib/data/highlight-colors.ts"),
       import("/src/lib/data/store.ts")
     ]);
     const content = getVisibleReaderContent();
-    const range = getReadableRange(content, { minimumOffset: 40, preferredLength: 18 });
-    const snapshot = highlightManager.getHighlightSnapshotForRange(content, range);
+    const colorIds = highlightColorData.highlightColors.map((color) => color.id);
+    const snapshots = getReadableHighlightSnapshots(content, {
+      colorCount: colorIds.length,
+      highlightManager,
+      minimumLeft: getReaderVisibleLeftBound(),
+      preferredLength: 18
+    });
     const book = await store.database.getData(currentBookId);
 
-    if (!snapshot || !book) {
-      throw new Error("Unable to create the reader screenshot highlight.");
+    if (snapshots.length !== colorIds.length || !book) {
+      throw new Error("Unable to create all reader screenshot highlights.");
     }
 
-    const highlight = {
+    const highlights = snapshots.map((snapshot, index) => ({
       ...snapshot,
       bookTitle: book.title,
-      color: "yellow",
+      color: colorIds[index],
       dataId: currentBookId,
       dateCreated: Date.now(),
-      id: 9001,
-      note: "Screenshot fixture highlight"
-    };
-    const result = highlightManager.applyHighlights(content, [highlight]);
+      id: 9001 + index,
+      note: `Screenshot fixture ${colorIds[index]} highlight`
+    }));
+    const result = highlightManager.applyHighlights(content, highlights);
 
-    if (!result.resolvedHighlights.length || !content.querySelector("mark.ttu-highlight")) {
-      throw new Error("Unable to paint the reader screenshot highlight.");
+    const renderedHighlightIds = new Set(
+      Array.from(content.querySelectorAll("mark.ttu-highlight[data-highlight-id]")).map((mark) =>
+        mark.getAttribute("data-highlight-id")
+      )
+    );
+
+    if (
+      result.resolvedHighlights.length !== colorIds.length ||
+      renderedHighlightIds.size < colorIds.length
+    ) {
+      throw new Error("Unable to paint all reader screenshot highlights.");
     }
 
     function getVisibleReaderContent() {
@@ -429,29 +444,145 @@ async function paintReaderHighlight(page, { bookId }) {
       return content;
     }
 
-    function getReadableRange(root, { minimumOffset, preferredLength }) {
+    function getReaderVisibleLeftBound() {
+      return Math.min(window.innerWidth - 160, Math.max(360, window.innerWidth * 0.48));
+    }
+
+    function getReadableHighlightSnapshots(root, options) {
+      let selectedCandidates = [];
+      const attempts = [options.minimumLeft, 0];
+
+      for (const minimumLeft of attempts) {
+        const candidates = collectReadableHighlightCandidates(root, {
+          ...options,
+          minimumLeft
+        });
+        selectedCandidates = selectSpreadHighlightCandidates(candidates, {
+          colorCount: options.colorCount,
+          minimumLeft
+        });
+
+        if (selectedCandidates.length >= options.colorCount) {
+          return selectedCandidates.map((candidate) => candidate.snapshot);
+        }
+      }
+
+      return selectedCandidates.map((candidate) => candidate.snapshot);
+    }
+
+    function collectReadableHighlightCandidates(root, { highlightManager, minimumLeft, preferredLength }) {
+      const candidates = [];
       const textNodes = getReadableTextNodes(root);
       let offset = 0;
 
       for (let index = 0; index < textNodes.length; index += 1) {
         const node = textNodes[index];
         const text = node.textContent || "";
-        const start = findReadableStart(text, offset >= minimumOffset ? 0 : minimumOffset - offset);
+        let start = findReadableStart(text, 0);
 
         offset += text.length;
 
-        if (start === -1) {
-          continue;
-        }
+        while (start !== -1) {
+          const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
+          const rect = range?.getBoundingClientRect();
 
-        const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
+          if (range && rect && isUsefulReadableRect(rect, minimumLeft)) {
+            const snapshot = highlightManager.getHighlightSnapshotForRange(root, range);
 
-        if (range && (range.getBoundingClientRect().width || range.getBoundingClientRect().height)) {
-          return range;
+            if (snapshot) {
+              candidates.push({
+                centerX: rect.left + rect.width / 2,
+                snapshot
+              });
+            }
+          }
+
+          start = findReadableStart(text, start + preferredLength + 4);
         }
       }
 
-      throw new Error("Unable to find selectable Japanese reader text.");
+      return candidates;
+    }
+
+    function selectSpreadHighlightCandidates(candidates, { colorCount, minimumLeft }) {
+      const targets = getHighlightTargetCenters({ colorCount, minimumLeft });
+      const selected = [];
+
+      for (const target of targets) {
+        const candidate = getBestHighlightCandidate(candidates, {
+          selected,
+          target
+        });
+
+        if (candidate) {
+          selected.push(candidate);
+        }
+      }
+
+      return selected;
+    }
+
+    function getHighlightTargetCenters({ colorCount, minimumLeft }) {
+      const maxTarget = window.innerWidth - 72;
+      const minTarget = Math.min(
+        maxTarget - 40,
+        Math.max(minimumLeft + 84, window.innerWidth * 0.56)
+      );
+
+      if (colorCount <= 1) {
+        return [(minTarget + maxTarget) / 2];
+      }
+
+      return Array.from(
+        { length: colorCount },
+        (_, index) => maxTarget - ((maxTarget - minTarget) * index) / (colorCount - 1)
+      );
+    }
+
+    function getBestHighlightCandidate(candidates, { selected, target }) {
+      let bestCandidate;
+      let bestScore = Infinity;
+
+      for (const candidate of candidates) {
+        if (overlapsSelectedCandidate(candidate, selected)) {
+          continue;
+        }
+
+        const nearbySelectedPenalty = selected.some(
+          (selectedCandidate) => Math.abs(selectedCandidate.centerX - candidate.centerX) < 36
+        )
+          ? 96
+          : 0;
+        const score = Math.abs(candidate.centerX - target) + nearbySelectedPenalty;
+
+        if (score < bestScore) {
+          bestCandidate = candidate;
+          bestScore = score;
+        }
+      }
+
+      return bestCandidate;
+    }
+
+    function isUsefulReadableRect(rect, minimumLeft) {
+      if (!rect.width || !rect.height) {
+        return false;
+      }
+
+      return rect.right >= minimumLeft && rect.left <= window.innerWidth - 24;
+    }
+
+    function overlapsSelectedCandidate(candidate, selectedCandidates) {
+      return selectedCandidates.some((selectedCandidate) =>
+        snapshotsOverlap(candidate.snapshot, selectedCandidate.snapshot)
+      );
+    }
+
+    function snapshotsOverlap(firstSnapshot, secondSnapshot) {
+      return (
+        firstSnapshot.startOffset < secondSnapshot.endOffset &&
+        firstSnapshot.endOffset > secondSnapshot.startOffset
+      );
     }
 
     function getReadableTextNodes(root) {
@@ -482,29 +613,17 @@ async function paintReaderHighlight(page, { bookId }) {
 
     function buildRangeFromTextNodes(textNodes, startIndex, startOffset, preferredLength) {
       const range = document.createRange();
-      let remaining = preferredLength;
+      const node = textNodes[startIndex];
+      const text = node.textContent || "";
+      const endOffset = Math.min(text.length, startOffset + preferredLength);
 
-      range.setStart(textNodes[startIndex], startOffset);
-
-      for (let index = startIndex; index < textNodes.length; index += 1) {
-        const node = textNodes[index];
-        const text = node.textContent || "";
-        const localStart = index === startIndex ? startOffset : 0;
-        const available = Math.max(0, text.length - localStart);
-
-        if (!available) {
-          continue;
-        }
-
-        if (available >= remaining) {
-          range.setEnd(node, localStart + remaining);
-          return range;
-        }
-
-        remaining -= available;
+      if (endOffset <= startOffset) {
+        return undefined;
       }
 
-      return undefined;
+      range.setStart(node, startOffset);
+      range.setEnd(node, endOffset);
+      return range;
     }
 
     function findReadableStart(text, minimumStart) {
@@ -534,7 +653,8 @@ async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotP
   await page.goto(`${appUrl}/b?id=${bookId}`, { waitUntil: "domcontentloaded" });
   await waitForReaderContent(page);
   await advanceReaderToReadablePage(page);
-  await paintReaderHighlight(page, { bookId });
+  await paintReaderHighlights(page, { bookId });
+  await openReaderTableOfContents(page);
   await selectReaderText(page);
   await settlePageAssets(page);
   await page.screenshot({
@@ -542,6 +662,15 @@ async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotP
     fullPage: false,
     path: screenshotPath
   });
+}
+
+async function openReaderTableOfContents(page) {
+  await page.evaluate(async () => {
+    const { tocIsOpen$ } = await import("/src/lib/components/book-reader/book-toc/book-toc.ts");
+    tocIsOpen$.next(true);
+  });
+  await page.waitForSelector('[aria-label="Table of contents"]', { timeout: 10_000 });
+  await page.waitForTimeout(180);
 }
 
 async function waitForLibrary(page, bookCount) {
@@ -606,6 +735,7 @@ async function selectReaderText(page) {
     }
 
     const range = getReadableRange(content, {
+      minimumLeft: getReaderVisibleLeftBound(),
       minimumOffset: 0,
       preferredLength: 10
     });
@@ -614,29 +744,47 @@ async function selectReaderText(page) {
     selection?.removeAllRanges();
     selection?.addRange(range);
 
-    function getReadableRange(root, { minimumOffset, preferredLength }) {
+    function getReaderVisibleLeftBound() {
+      return Math.min(window.innerWidth - 160, Math.max(360, window.innerWidth * 0.48));
+    }
+
+    function getReadableRange(root, { minimumLeft, minimumOffset, preferredLength }) {
       const textNodes = getReadableTextNodes(root);
+      const attempts = [minimumLeft, 0];
       let offset = 0;
 
-      for (let index = 0; index < textNodes.length; index += 1) {
-        const node = textNodes[index];
-        const text = node.textContent || "";
-        const start = findReadableStart(text, offset >= minimumOffset ? 0 : minimumOffset - offset);
+      for (const attemptedMinimumLeft of attempts) {
+        offset = 0;
 
-        offset += text.length;
+        for (let index = 0; index < textNodes.length; index += 1) {
+          const node = textNodes[index];
+          const text = node.textContent || "";
+          let start = findReadableStart(text, offset >= minimumOffset ? 0 : minimumOffset - offset);
 
-        if (start === -1) {
-          continue;
-        }
+          offset += text.length;
 
-        const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
+          while (start !== -1) {
+            const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
+            const rect = range?.getBoundingClientRect();
 
-        if (range && (range.getBoundingClientRect().width || range.getBoundingClientRect().height)) {
-          return range;
+            if (range && rect && isUsefulReadableRect(rect, attemptedMinimumLeft)) {
+              return range;
+            }
+
+            start = findReadableStart(text, start + preferredLength + 4);
+          }
         }
       }
 
       throw new Error("Unable to find selectable Japanese reader text.");
+    }
+
+    function isUsefulReadableRect(rect, minimumLeft) {
+      if (!rect.width || !rect.height) {
+        return false;
+      }
+
+      return rect.right >= minimumLeft && rect.left <= window.innerWidth - 24;
     }
 
     function getReadableTextNodes(root) {
@@ -647,7 +795,7 @@ async function selectReaderText(page) {
 
           if (
             !parent ||
-            parent.closest("script, style, rt") ||
+            parent.closest("script, style, rt, mark") ||
             !/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(text)
           ) {
             return NodeFilter.FILTER_REJECT;
@@ -667,29 +815,17 @@ async function selectReaderText(page) {
 
     function buildRangeFromTextNodes(textNodes, startIndex, startOffset, preferredLength) {
       const range = document.createRange();
-      let remaining = preferredLength;
+      const node = textNodes[startIndex];
+      const text = node.textContent || "";
+      const endOffset = Math.min(text.length, startOffset + preferredLength);
 
-      range.setStart(textNodes[startIndex], startOffset);
-
-      for (let index = startIndex; index < textNodes.length; index += 1) {
-        const node = textNodes[index];
-        const text = node.textContent || "";
-        const localStart = index === startIndex ? startOffset : 0;
-        const available = Math.max(0, text.length - localStart);
-
-        if (!available) {
-          continue;
-        }
-
-        if (available >= remaining) {
-          range.setEnd(node, localStart + remaining);
-          return range;
-        }
-
-        remaining -= available;
+      if (endOffset <= startOffset) {
+        return undefined;
       }
 
-      return undefined;
+      range.setStart(node, startOffset);
+      range.setEnd(node, endOffset);
+      return range;
     }
 
     function findReadableStart(text, minimumStart) {
