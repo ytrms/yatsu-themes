@@ -35,12 +35,14 @@ let catalog = { themes: [], generatedAt: "" };
 let activeMode = "all";
 let installToastTimer;
 let installToastHiddenTimer;
+let activeDetailsThemeId = "";
+let isSyncingDialogFromUrl = false;
 
 init();
 
 async function init() {
   try {
-    const response = await fetch("catalog.json", { cache: "no-store" });
+    const response = await fetch("/catalog.json", { cache: "no-store" });
 
     if (!response.ok) {
       throw new Error(`Catalog request failed: ${response.status}`);
@@ -49,6 +51,7 @@ async function init() {
     catalog = await response.json();
     wireControls();
     render();
+    syncThemeDialogWithUrl();
   } catch (error) {
     countEl.textContent = "Theme catalog could not be loaded.";
     grid.innerHTML = `<p class="empty-state">${escapeHtml(error.message)}</p>`;
@@ -62,12 +65,14 @@ function wireControls() {
       showInstallToast();
     }
   });
-  detailsDialogClose.addEventListener("click", () => detailsDialog.close());
+  detailsDialogClose.addEventListener("click", closeThemeDetailsDialog);
   detailsDialog.addEventListener("click", (event) => {
     if (event.target === detailsDialog) {
-      detailsDialog.close();
+      closeThemeDetailsDialog();
     }
   });
+  detailsDialog.addEventListener("close", handleThemeDetailsDialogClose);
+  window.addEventListener("popstate", syncThemeDialogWithUrl);
 
   for (const button of modeButtons) {
     button.addEventListener("click", () => {
@@ -87,7 +92,10 @@ function render() {
   const themes = catalog.themes.filter((theme) => themeMatches(theme, query, activeMode));
 
   grid.replaceChildren();
-  countEl.textContent = `${themes.length} of ${catalog.themes.length} themes`;
+  countEl.textContent = `${themes.length} of ${catalog.themes.length} ${pluralize(
+    catalog.themes.length,
+    "theme"
+  )}`;
 
   if (!themes.length) {
     const empty = document.createElement("p");
@@ -103,10 +111,7 @@ function render() {
 }
 
 function themeMatches(theme, query, mode) {
-  const matchesMode =
-    mode === "all" ||
-    theme.mode === mode ||
-    (mode === "dark" && theme.mode === "dim");
+  const matchesMode = mode === "all" || getThemeModes(theme).includes(mode);
 
   if (!matchesMode) {
     return false;
@@ -138,7 +143,7 @@ function renderThemeCard(theme) {
   node.querySelector("h2").textContent = theme.name;
   node.querySelector(".theme-description").textContent =
     theme.description || "A curated Yatsu Reader theme.";
-  node.querySelector(".theme-mode-pill").textContent = theme.mode;
+  node.querySelector(".theme-mode-pill").textContent = formatThemeMode(theme);
 
   const swatches = node.querySelector(".theme-swatches");
   renderSwatches(swatches, theme);
@@ -160,7 +165,7 @@ function renderThemeCard(theme) {
   }
 
   const download = node.querySelector("a[download]");
-  download.href = theme.downloadUrl;
+  download.href = getSiteAssetUrl(theme.downloadUrl);
   download.download = theme.fileName;
   download.setAttribute("aria-label", `Download ${theme.name}`);
 
@@ -254,7 +259,7 @@ function populateThemePreview(preview, theme) {
 function createScreenshotImage(src, alt) {
   const image = document.createElement("img");
   image.className = "preview-screenshot";
-  image.src = src;
+  image.src = getSiteAssetUrl(src);
   image.alt = alt;
   image.loading = "lazy";
   image.decoding = "async";
@@ -320,24 +325,154 @@ function getMetaItems(theme) {
   ].filter(Boolean);
 }
 
-function openThemeDetailsDialog(theme) {
+function openThemeDetailsDialog(theme, { updateUrl = true } = {}) {
   detailsDialogPreview.replaceChildren(createThemePreview(theme, "theme-dialog-carousel"));
   detailsDialogTitle.textContent = theme.name;
   detailsDialogDescription.textContent = theme.description || "A curated Yatsu Reader theme.";
   renderSwatches(detailsDialogSwatches, theme);
   detailsDialogList.replaceChildren(
     detailItem("Author", theme.author || "Unknown"),
-    detailItem("Mode", theme.mode),
+    detailItem("Mode", formatThemeMode(theme)),
     detailItem("File", theme.fileName),
     detailItem("Background", theme.hasBackgroundImages ? "Included" : "None"),
     detailItem("Typography", theme.hasTypography ? "Included" : "None"),
     detailItem("Supporter settings", getSupporterSettingsDescription(theme)),
     detailItem("Tags", theme.tags.length ? theme.tags.join(", ") : "None")
   );
-  detailsDialogDownload.href = theme.downloadUrl;
+  detailsDialogDownload.href = getSiteAssetUrl(theme.downloadUrl);
   detailsDialogDownload.download = theme.fileName;
   detailsDialogDownload.setAttribute("aria-label", `Download ${theme.name}`);
-  detailsDialog.showModal();
+  activeDetailsThemeId = theme.id;
+  document.title = `${theme.name} - Yatsu Themes`;
+
+  if (!detailsDialog.open) {
+    detailsDialog.showModal();
+  }
+
+  if (updateUrl) {
+    pushThemeUrl(theme);
+  }
+}
+
+function closeThemeDetailsDialog() {
+  if (detailsDialog.open) {
+    detailsDialog.close();
+  }
+}
+
+function handleThemeDetailsDialogClose() {
+  const hadActiveTheme = Boolean(activeDetailsThemeId);
+
+  activeDetailsThemeId = "";
+  document.title = "Yatsu Themes";
+
+  if (hadActiveTheme && !isSyncingDialogFromUrl && getThemeIdFromUrl()) {
+    window.history.replaceState({}, "", getCatalogUrl());
+  }
+}
+
+function syncThemeDialogWithUrl() {
+  const themeId = getThemeIdFromUrl();
+  const theme = themeId ? catalog.themes.find((candidate) => candidate.id === themeId) : undefined;
+
+  isSyncingDialogFromUrl = true;
+
+  try {
+    if (theme) {
+      openThemeDetailsDialog(theme, { updateUrl: false });
+    } else if (detailsDialog.open) {
+      detailsDialog.close();
+    }
+  } finally {
+    isSyncingDialogFromUrl = false;
+  }
+}
+
+function pushThemeUrl(theme) {
+  const nextUrl = getThemeUrl(theme);
+
+  if (window.location.pathname !== nextUrl) {
+    window.history.pushState({ themeId: theme.id }, "", nextUrl);
+  }
+}
+
+function getThemeIdFromUrl() {
+  const pathThemeId = getThemeIdFromPath(window.location.pathname);
+
+  if (pathThemeId) {
+    return pathThemeId;
+  }
+
+  const queryThemeId = new URLSearchParams(window.location.search).get("theme");
+
+  if (queryThemeId) {
+    return queryThemeId;
+  }
+
+  const hashMatch = window.location.hash.match(/^#theme=([^&]+)/);
+
+  return hashMatch ? decodeURIComponent(hashMatch[1]) : "";
+}
+
+function getThemeIdFromPath(pathname) {
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments[0] !== "theme" || !segments[1]) {
+    return "";
+  }
+
+  try {
+    return decodeURIComponent(segments[1]);
+  } catch {
+    return "";
+  }
+}
+
+function getThemeUrl(theme) {
+  return `/theme/${encodeURIComponent(theme.id)}/`;
+}
+
+function getCatalogUrl() {
+  return "/";
+}
+
+function getSiteAssetUrl(value) {
+  if (!value) {
+    return "";
+  }
+
+  if (/^(?:https?:|data:|blob:|\/)/.test(value)) {
+    return value;
+  }
+
+  return `/${value.replace(/^\.?\//, "")}`;
+}
+
+function getThemeModes(theme) {
+  const modes = Array.isArray(theme.modes) ? theme.modes : [theme.mode];
+
+  return Array.from(
+    new Set(
+      modes
+        .map((mode) => String(mode || "").toLowerCase())
+        .flatMap((mode) => (mode === "dim" ? ["dark", "light"] : [mode]))
+        .filter((mode) => mode === "dark" || mode === "light")
+    )
+  );
+}
+
+function formatThemeMode(theme) {
+  const modes = getThemeModes(theme);
+
+  if (modes.includes("dark") && modes.includes("light")) {
+    return "Light/Dark";
+  }
+
+  if (modes.includes("dark")) {
+    return "Dark";
+  }
+
+  return "Light";
 }
 
 function renderSwatches(container, theme) {
@@ -372,6 +507,10 @@ function getSupporterSettingsDescription(theme) {
 
 function capitalize(value) {
   return value ? `${value[0].toUpperCase()}${value.slice(1)}` : "";
+}
+
+function pluralize(count, singular) {
+  return count === 1 ? singular : `${singular}s`;
 }
 
 function detailItem(term, description) {

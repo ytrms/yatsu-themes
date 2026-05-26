@@ -11,6 +11,7 @@ const publicDir = path.join(rootDir, "docs");
 const publicThemesDir = path.join(publicDir, "themes");
 const publicAssetsDir = path.join(publicDir, "theme-assets");
 const publicScreenshotsDir = path.join(publicDir, "screenshots");
+const publicThemePagesDir = path.join(publicDir, "theme");
 const catalogPath = path.join(publicDir, "catalog.json");
 const checkMode = process.argv.includes("--check");
 const packageSlots = ["reader", "library"];
@@ -49,6 +50,7 @@ async function main() {
       throw new Error("docs/catalog.json is out of date. Run npm run build.");
     }
 
+    await checkThemePages(catalog.themes);
     console.log(`Catalog is up to date with ${catalog.themes.length} themes.`);
     return;
   }
@@ -64,8 +66,10 @@ async function createCatalog({ writeFiles }) {
   if (writeFiles) {
     await fs.rm(publicThemesDir, { recursive: true, force: true });
     await fs.rm(publicAssetsDir, { recursive: true, force: true });
+    await fs.rm(publicThemePagesDir, { recursive: true, force: true });
     await fs.mkdir(publicThemesDir, { recursive: true });
     await fs.mkdir(publicAssetsDir, { recursive: true });
+    await fs.mkdir(publicThemePagesDir, { recursive: true });
   }
 
   const themeFiles = await getThemeFiles();
@@ -86,7 +90,8 @@ async function createCatalog({ writeFiles }) {
     const displayName = sanitizeName(metadata.name || payload.name || fallbackThemeName(fileName));
     const id = getUniqueId(slugify(metadata.slug || displayName || fileName), usedIds);
     const theme = getCompleteThemeOption(payload.theme || {});
-    const mode = getThemeMode(theme.backgroundColor);
+    const modeData = getThemeModeData(theme.backgroundColor);
+    const mode = modeData.mode;
     const screenshots = await getThemeScreenshots(id);
     const metadataTags = normalizeTags(metadata.tags || []);
     const isBuiltInTheme = metadataTags.includes("built-in");
@@ -99,7 +104,7 @@ async function createCatalog({ writeFiles }) {
     });
     const tags = normalizeTags([
       ...metadataTags,
-      mode,
+      ...modeData.tags,
       Object.keys(backgroundImages).length ? "background-image" : "",
       payload.typography ? "typography" : "",
       supporterOnlySettings.length ? "supporter-settings" : ""
@@ -115,11 +120,12 @@ async function createCatalog({ writeFiles }) {
       author: sanitizeName(metadata.author || ""),
       description: sanitizeDescription(metadata.description || ""),
       fileName,
-      downloadUrl: `themes/${encodeURIComponent(fileName)}`,
+      downloadUrl: `/themes/${encodeURIComponent(fileName)}`,
       sizeBytes: buffer.byteLength,
       contentHash: crypto.createHash("sha256").update(buffer).digest("hex").slice(0, 16),
       updatedAt: metadata.updatedAt,
       mode,
+      modes: modeData.tags,
       tags,
       theme,
       backgroundImages,
@@ -135,6 +141,11 @@ async function createCatalog({ writeFiles }) {
   }
 
   themes.sort(compareThemes);
+
+  if (writeFiles) {
+    await writeThemePages(themes);
+  }
+
   const generatedAt =
     themes
       .map((theme) => theme.updatedAt)
@@ -162,13 +173,51 @@ async function getThemeScreenshots(id) {
 
     try {
       await fs.access(screenshotPath);
-      screenshots[key] = `screenshots/${fileName}`;
+      screenshots[key] = `/screenshots/${fileName}`;
     } catch {
       // Screenshots are optional generated assets.
     }
   }
 
   return screenshots;
+}
+
+async function writeThemePages(themes) {
+  const pageHtml = await getThemePageHtml();
+
+  await Promise.all(
+    themes.map(async (theme) => {
+      const themePageDir = path.join(publicThemePagesDir, theme.id);
+
+      await fs.mkdir(themePageDir, { recursive: true });
+      await fs.writeFile(path.join(themePageDir, "index.html"), pageHtml);
+    })
+  );
+}
+
+async function checkThemePages(themes) {
+  const pageHtml = await getThemePageHtml();
+  const expectedThemeIds = new Set(themes.map((theme) => theme.id));
+  const entries = await fs.readdir(publicThemePagesDir, { withFileTypes: true }).catch(() => []);
+
+  for (const theme of themes) {
+    const themePagePath = path.join(publicThemePagesDir, theme.id, "index.html");
+    const currentHtml = await fs.readFile(themePagePath, "utf8").catch(() => "");
+
+    if (currentHtml !== pageHtml) {
+      throw new Error("Theme pages are out of date. Run npm run build.");
+    }
+  }
+
+  for (const entry of entries) {
+    if (entry.isDirectory() && !expectedThemeIds.has(entry.name)) {
+      throw new Error("Theme pages contain stale entries. Run npm run build.");
+    }
+  }
+}
+
+async function getThemePageHtml() {
+  return fs.readFile(path.join(publicDir, "index.html"), "utf8");
 }
 
 async function getThemeFiles() {
@@ -516,18 +565,34 @@ function mixColorExpressions(fromColor, toColor, weight, alpha) {
   )}, ${Math.round(fromB * inverseWeight + toB * weight)}, ${alpha})`;
 }
 
-function getThemeMode(backgroundColor) {
+function getThemeModeData(backgroundColor) {
   const luminance = getThemeColorLuminance(backgroundColor);
 
+  if (!Number.isFinite(luminance)) {
+    return {
+      mode: "light",
+      tags: ["dark", "light"]
+    };
+  }
+
   if (luminance < 0.18) {
-    return "dark";
+    return {
+      mode: "dark",
+      tags: ["dark"]
+    };
   }
 
   if (luminance < 0.5) {
-    return "dim";
+    return {
+      mode: "dark",
+      tags: ["dark", "light"]
+    };
   }
 
-  return "light";
+  return {
+    mode: "light",
+    tags: ["light"]
+  };
 }
 
 function getSwatches(theme) {
@@ -666,7 +731,15 @@ function fallbackThemeName(fileName) {
 
 function normalizeTags(tags) {
   return Array.from(
-    new Set(tags.map((tag) => sanitizeName(tag).toLowerCase()).filter(Boolean))
+    new Set(
+      tags
+        .flatMap((tag) => {
+          const normalizedTag = sanitizeName(tag).toLowerCase();
+
+          return normalizedTag === "dim" ? ["dark", "light"] : [normalizedTag];
+        })
+        .filter(Boolean)
+    )
   ).sort((a, b) => a.localeCompare(b));
 }
 

@@ -1,75 +1,105 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-25T00:00:00.000Z",
-  "themeCount": 6,
+  "generatedAt": "",
+  "themeCount": 1,
   "themes": [
     {
-      "id": "light-theme",
-      "name": "Light",
-      "author": "Yatsu",
-      "description": "Yatsu's default high-contrast light reader theme.",
-      "fileName": "light-theme.yatsutheme",
-      "downloadUrl": "themes/light-theme.yatsutheme",
-      "sizeBytes": 985,
-      "contentHash": "006be487992212ef",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "light",
-      "tags": [
-        "built-in",
-        "default",
+      "id": "bocchi",
+      "name": "Bocchi",
+      "author": "shiori",
+      "description": "",
+      "fileName": "bocchi.yatsutheme",
+      "downloadUrl": "/themes/bocchi.yatsutheme",
+      "sizeBytes": 702897,
+      "contentHash": "57d85ba30da66e68",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark",
         "light"
       ],
+      "tags": [
+        "background-image",
+        "dark",
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
       "theme": {
-        "fontColor": "rgba(0, 0, 0, 0.87)",
-        "backgroundColor": "rgba(255, 255, 255, 1)",
-        "accentColor": "rgba(71, 85, 105, 1)",
-        "accentTextColor": "rgba(248, 250, 252, 1)",
-        "linkColor": "rgba(0, 0, 0, 0.87)",
-        "mutedTextColor": "rgba(0, 0, 0, 0.56)",
-        "readerChromeBackgroundColor": "rgba(235, 235, 235, 0.78)",
-        "readerChromeBorderColor": "rgba(224, 224, 224, 0.2)",
-        "selectionFontColor": "rgba(248, 250, 252, 1)",
-        "selectionBackgroundColor": "rgba(71, 85, 105, 1)",
-        "hintFuriganaShadowColor": "rgba(34, 34, 49, 0.3)",
-        "hintFuriganaFontColor": "rgba(0, 0, 0, 0.3306)",
-        "tooltipTextFontColor": "rgba(0, 0, 0, 0.6)",
+        "fontColor": "rgba(255, 255, 255, 1)",
+        "backgroundColor": "rgba(94, 63, 125, 0.9)",
+        "accentColor": "rgba(255, 199, 248, 1)",
+        "accentTextColor": "rgba(0, 0, 0, 1)",
+        "linkColor": "rgba(255, 255, 255, 1)",
+        "mutedTextColor": "rgba(255, 255, 255, 1)",
+        "readerChromeBackgroundColor": "rgba(239, 165, 248, 0.7)",
+        "readerChromeBorderColor": "rgba(193, 113, 145, 0.2)",
+        "selectionFontColor": "rgba(255, 255, 255, 1)",
+        "selectionBackgroundColor": "rgba(132, 79, 135, 1)",
+        "hintFuriganaShadowColor": "rgba(255, 255, 255, 0.2)",
+        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.7)",
+        "tooltipTextFontColor": "rgba(255, 255, 255, 1)",
         "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
+        "highlightGreenColor": "rgba(34, 197, 94, 0.4)",
+        "highlightBlueColor": "rgba(59, 130, 246, 0.4)",
+        "highlightPinkColor": "rgba(255, 148, 201, 0.4)",
+        "highlightPurpleColor": "rgba(171, 137, 251, 0.28)"
       },
-      "backgroundImages": {},
+      "backgroundImages": {
+        "reader": {
+          "url": "theme-assets/bocchi/reader-background.jpg",
+          "fileName": "bocchi-the-rock-8k-cg-2048x1152.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.9,
+          "blur": 4,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0.4
+        },
+        "library": {
+          "url": "theme-assets/bocchi/library-background.jpg",
+          "fileName": "bocchi-the-rock-8k-cg-2048x1152.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 1,
+          "blur": 0,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0.35
+        }
+      },
       "screenshots": {
-        "library": "screenshots/light-theme-library.png",
-        "reader": "screenshots/light-theme-reader.png"
+        "library": "/screenshots/bocchi-library.png",
+        "reader": "/screenshots/bocchi-reader.png"
       },
-      "hasBackgroundImages": false,
+      "hasBackgroundImages": true,
       "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
+      "hasBackgroundImageSettings": true,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors",
+        "background image settings"
+      ],
+      "hasTypography": true,
       "swatches": [
         {
           "key": "backgroundColor",
+          "color": "rgba(94, 63, 125, 0.9)"
+        },
+        {
+          "key": "fontColor",
           "color": "rgba(255, 255, 255, 1)"
         },
         {
-          "key": "fontColor",
-          "color": "rgba(0, 0, 0, 0.87)"
-        },
-        {
           "key": "accentColor",
-          "color": "rgba(71, 85, 105, 1)"
+          "color": "rgba(255, 199, 248, 1)"
         },
         {
           "key": "linkColor",
-          "color": "rgba(0, 0, 0, 0.87)"
+          "color": "rgba(255, 255, 255, 1)"
         },
         {
           "key": "selectionBackgroundColor",
-          "color": "rgba(71, 85, 105, 1)"
+          "color": "rgba(132, 79, 135, 1)"
         },
         {
           "key": "highlightYellowColor",
@@ -77,421 +107,11 @@
         },
         {
           "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
+          "color": "rgba(59, 130, 246, 0.4)"
         },
         {
           "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
-        }
-      ]
-    },
-    {
-      "id": "ecru-theme",
-      "name": "Ecru",
-      "author": "Yatsu",
-      "description": "A warm off-white theme for softer daytime reading.",
-      "fileName": "ecru-theme.yatsutheme",
-      "downloadUrl": "themes/ecru-theme.yatsutheme",
-      "sizeBytes": 984,
-      "contentHash": "0e03e74e1dcf3e3d",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "light",
-      "tags": [
-        "built-in",
-        "light",
-        "warm"
-      ],
-      "theme": {
-        "fontColor": "rgba(0, 0, 0, 0.87)",
-        "backgroundColor": "rgba(247, 246, 235, 1)",
-        "accentColor": "rgba(113, 80, 48, 1)",
-        "accentTextColor": "rgba(255, 252, 242, 1)",
-        "linkColor": "rgba(0, 0, 0, 0.87)",
-        "mutedTextColor": "rgba(0, 0, 0, 0.56)",
-        "readerChromeBackgroundColor": "rgba(227, 226, 216, 0.78)",
-        "readerChromeBorderColor": "rgba(217, 216, 207, 0.2)",
-        "selectionFontColor": "rgba(255, 252, 242, 1)",
-        "selectionBackgroundColor": "rgba(113, 80, 48, 1)",
-        "hintFuriganaShadowColor": "rgba(34, 34, 49, 0.3)",
-        "hintFuriganaFontColor": "rgba(0, 0, 0, 0.3306)",
-        "tooltipTextFontColor": "rgba(0, 0, 0, 0.6)",
-        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
-      },
-      "backgroundImages": {},
-      "screenshots": {
-        "library": "screenshots/ecru-theme-library.png",
-        "reader": "screenshots/ecru-theme-reader.png"
-      },
-      "hasBackgroundImages": false,
-      "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
-      "swatches": [
-        {
-          "key": "backgroundColor",
-          "color": "rgba(247, 246, 235, 1)"
-        },
-        {
-          "key": "fontColor",
-          "color": "rgba(0, 0, 0, 0.87)"
-        },
-        {
-          "key": "accentColor",
-          "color": "rgba(113, 80, 48, 1)"
-        },
-        {
-          "key": "linkColor",
-          "color": "rgba(0, 0, 0, 0.87)"
-        },
-        {
-          "key": "selectionBackgroundColor",
-          "color": "rgba(113, 80, 48, 1)"
-        },
-        {
-          "key": "highlightYellowColor",
-          "color": "rgba(250, 204, 21, 0.34)"
-        },
-        {
-          "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
-        },
-        {
-          "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
-        }
-      ]
-    },
-    {
-      "id": "water-theme",
-      "name": "Water",
-      "author": "Yatsu",
-      "description": "A cool light theme with Yatsu's blue-toned page background.",
-      "fileName": "water-theme.yatsutheme",
-      "downloadUrl": "themes/water-theme.yatsutheme",
-      "sizeBytes": 985,
-      "contentHash": "f593069f711d1b44",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "light",
-      "tags": [
-        "built-in",
-        "cool",
-        "light"
-      ],
-      "theme": {
-        "fontColor": "rgba(0, 0, 0, 0.87)",
-        "backgroundColor": "rgba(223, 236, 244, 1)",
-        "accentColor": "rgba(43, 92, 110, 1)",
-        "accentTextColor": "rgba(248, 250, 252, 1)",
-        "linkColor": "rgba(0, 0, 0, 0.87)",
-        "mutedTextColor": "rgba(0, 0, 0, 0.56)",
-        "readerChromeBackgroundColor": "rgba(205, 217, 224, 0.78)",
-        "readerChromeBorderColor": "rgba(196, 208, 215, 0.2)",
-        "selectionFontColor": "rgba(248, 250, 252, 1)",
-        "selectionBackgroundColor": "rgba(43, 92, 110, 1)",
-        "hintFuriganaShadowColor": "rgba(34, 34, 49, 0.3)",
-        "hintFuriganaFontColor": "rgba(0, 0, 0, 0.3306)",
-        "tooltipTextFontColor": "rgba(0, 0, 0, 0.6)",
-        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
-      },
-      "backgroundImages": {},
-      "screenshots": {
-        "library": "screenshots/water-theme-library.png",
-        "reader": "screenshots/water-theme-reader.png"
-      },
-      "hasBackgroundImages": false,
-      "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
-      "swatches": [
-        {
-          "key": "backgroundColor",
-          "color": "rgba(223, 236, 244, 1)"
-        },
-        {
-          "key": "fontColor",
-          "color": "rgba(0, 0, 0, 0.87)"
-        },
-        {
-          "key": "accentColor",
-          "color": "rgba(43, 92, 110, 1)"
-        },
-        {
-          "key": "linkColor",
-          "color": "rgba(0, 0, 0, 0.87)"
-        },
-        {
-          "key": "selectionBackgroundColor",
-          "color": "rgba(43, 92, 110, 1)"
-        },
-        {
-          "key": "highlightYellowColor",
-          "color": "rgba(250, 204, 21, 0.34)"
-        },
-        {
-          "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
-        },
-        {
-          "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
-        }
-      ]
-    },
-    {
-      "id": "gray-theme",
-      "name": "Gray",
-      "author": "Yatsu",
-      "description": "Yatsu's default dark theme with readable contrast and soft chrome.",
-      "fileName": "gray-theme.yatsutheme",
-      "downloadUrl": "themes/gray-theme.yatsutheme",
-      "sizeBytes": 1016,
-      "contentHash": "543f3200f412e9c1",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "dark",
-      "tags": [
-        "built-in",
-        "dark",
-        "default"
-      ],
-      "theme": {
-        "fontColor": "rgba(255, 255, 255, 0.87)",
-        "backgroundColor": "rgba(35, 39, 42, 1)",
-        "accentColor": "rgba(212, 217, 220, 0.9)",
-        "accentTextColor": "rgba(15, 23, 42, 0.98)",
-        "linkColor": "rgba(255, 255, 255, 0.87)",
-        "mutedTextColor": "rgba(255, 255, 255, 0.58)",
-        "readerChromeBackgroundColor": "rgba(75, 78, 80, 0.86)",
-        "readerChromeBorderColor": "rgba(88, 91, 93, 0.2)",
-        "selectionFontColor": "rgba(15, 23, 42, 0.98)",
-        "selectionBackgroundColor": "rgba(212, 217, 220, 0.9)",
-        "hintFuriganaShadowColor": "rgba(240, 240, 241, 0.3)",
-        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.3306)",
-        "tooltipTextFontColor": "rgba(255, 255, 255, 0.6)",
-        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
-      },
-      "backgroundImages": {},
-      "screenshots": {
-        "library": "screenshots/gray-theme-library.png",
-        "reader": "screenshots/gray-theme-reader.png"
-      },
-      "hasBackgroundImages": false,
-      "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
-      "swatches": [
-        {
-          "key": "backgroundColor",
-          "color": "rgba(35, 39, 42, 1)"
-        },
-        {
-          "key": "fontColor",
-          "color": "rgba(255, 255, 255, 0.87)"
-        },
-        {
-          "key": "accentColor",
-          "color": "rgba(212, 217, 220, 0.9)"
-        },
-        {
-          "key": "linkColor",
-          "color": "rgba(255, 255, 255, 0.87)"
-        },
-        {
-          "key": "selectionBackgroundColor",
-          "color": "rgba(212, 217, 220, 0.9)"
-        },
-        {
-          "key": "highlightYellowColor",
-          "color": "rgba(250, 204, 21, 0.34)"
-        },
-        {
-          "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
-        },
-        {
-          "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
-        }
-      ]
-    },
-    {
-      "id": "dark-theme",
-      "name": "Dark",
-      "author": "Yatsu",
-      "description": "A deeper low-brightness theme for dim reading environments.",
-      "fileName": "dark-theme.yatsutheme",
-      "downloadUrl": "themes/dark-theme.yatsutheme",
-      "sizeBytes": 1014,
-      "contentHash": "da9bb87800c3dfb5",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "dark",
-      "tags": [
-        "built-in",
-        "dark",
-        "low-glare"
-      ],
-      "theme": {
-        "fontColor": "rgba(255, 255, 255, 0.6)",
-        "backgroundColor": "rgba(18, 18, 18, 1)",
-        "accentColor": "rgba(212, 217, 220, 0.9)",
-        "accentTextColor": "rgba(15, 23, 42, 0.98)",
-        "linkColor": "rgba(255, 255, 255, 0.6)",
-        "mutedTextColor": "rgba(255, 255, 255, 0.58)",
-        "readerChromeBackgroundColor": "rgba(61, 61, 61, 0.86)",
-        "readerChromeBorderColor": "rgba(75, 75, 75, 0.2)",
-        "selectionFontColor": "rgba(15, 23, 42, 0.98)",
-        "selectionBackgroundColor": "rgba(212, 217, 220, 0.9)",
-        "hintFuriganaShadowColor": "rgba(240, 240, 241, 0.3)",
-        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.3306)",
-        "tooltipTextFontColor": "rgba(255, 255, 255, 0.6)",
-        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
-      },
-      "backgroundImages": {},
-      "screenshots": {
-        "library": "screenshots/dark-theme-library.png",
-        "reader": "screenshots/dark-theme-reader.png"
-      },
-      "hasBackgroundImages": false,
-      "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
-      "swatches": [
-        {
-          "key": "backgroundColor",
-          "color": "rgba(18, 18, 18, 1)"
-        },
-        {
-          "key": "fontColor",
-          "color": "rgba(255, 255, 255, 0.6)"
-        },
-        {
-          "key": "accentColor",
-          "color": "rgba(212, 217, 220, 0.9)"
-        },
-        {
-          "key": "linkColor",
-          "color": "rgba(255, 255, 255, 0.6)"
-        },
-        {
-          "key": "selectionBackgroundColor",
-          "color": "rgba(212, 217, 220, 0.9)"
-        },
-        {
-          "key": "highlightYellowColor",
-          "color": "rgba(250, 204, 21, 0.34)"
-        },
-        {
-          "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
-        },
-        {
-          "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
-        }
-      ]
-    },
-    {
-      "id": "black-theme",
-      "name": "Black",
-      "author": "Yatsu",
-      "description": "A black-page theme for OLED displays and night reading.",
-      "fileName": "black-theme.yatsutheme",
-      "downloadUrl": "themes/black-theme.yatsutheme",
-      "sizeBytes": 1014,
-      "contentHash": "d577a4f089f5f284",
-      "updatedAt": "2026-05-25T00:00:00.000Z",
-      "mode": "dark",
-      "tags": [
-        "built-in",
-        "dark",
-        "oled"
-      ],
-      "theme": {
-        "fontColor": "rgba(255, 255, 255, 0.87)",
-        "backgroundColor": "rgba(0, 0, 0, 1)",
-        "accentColor": "rgba(226, 232, 240, 0.9)",
-        "accentTextColor": "rgba(15, 23, 42, 0.98)",
-        "linkColor": "rgba(255, 255, 255, 0.87)",
-        "mutedTextColor": "rgba(255, 255, 255, 0.58)",
-        "readerChromeBackgroundColor": "rgba(46, 46, 46, 0.86)",
-        "readerChromeBorderColor": "rgba(61, 61, 61, 0.2)",
-        "selectionFontColor": "rgba(15, 23, 42, 0.98)",
-        "selectionBackgroundColor": "rgba(226, 232, 240, 0.9)",
-        "hintFuriganaShadowColor": "rgba(240, 240, 241, 0.3)",
-        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.3306)",
-        "tooltipTextFontColor": "rgba(255, 255, 255, 0.6)",
-        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
-        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
-        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
-        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
-        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
-      },
-      "backgroundImages": {},
-      "screenshots": {
-        "library": "screenshots/black-theme-library.png",
-        "reader": "screenshots/black-theme-reader.png"
-      },
-      "hasBackgroundImages": false,
-      "hasScreenshots": true,
-      "hasBackgroundImageSettings": false,
-      "hasSupporterOnlySettings": false,
-      "supporterOnlySettings": [],
-      "hasTypography": false,
-      "swatches": [
-        {
-          "key": "backgroundColor",
-          "color": "rgba(0, 0, 0, 1)"
-        },
-        {
-          "key": "fontColor",
-          "color": "rgba(255, 255, 255, 0.87)"
-        },
-        {
-          "key": "accentColor",
-          "color": "rgba(226, 232, 240, 0.9)"
-        },
-        {
-          "key": "linkColor",
-          "color": "rgba(255, 255, 255, 0.87)"
-        },
-        {
-          "key": "selectionBackgroundColor",
-          "color": "rgba(226, 232, 240, 0.9)"
-        },
-        {
-          "key": "highlightYellowColor",
-          "color": "rgba(250, 204, 21, 0.34)"
-        },
-        {
-          "key": "highlightBlueColor",
-          "color": "rgba(59, 130, 246, 0.3)"
-        },
-        {
-          "key": "highlightPinkColor",
-          "color": "rgba(236, 72, 153, 0.28)"
+          "color": "rgba(255, 148, 201, 0.4)"
         }
       ]
     }

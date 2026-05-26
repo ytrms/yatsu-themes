@@ -23,6 +23,42 @@ const screenshotViewport = {
   width: Number(process.env.YATSU_SCREENSHOT_WIDTH || 1280),
   height: Number(process.env.YATSU_SCREENSHOT_HEIGHT || 900)
 };
+const screenshotAccountState = {
+  auth: {
+    isConfigured: true,
+    user: {
+      id: "yatsu-theme-screenshot-user",
+      email: "theme-screenshots@yatsu.local",
+      signInProvider: "screenshot",
+      username: "trms"
+    }
+  },
+  billing: {
+    stripeConfigured: false,
+    supporterCheckoutConfigured: false,
+    databaseConfigured: true,
+    schemaReady: true,
+    setupMessage: null,
+    supporter: {
+      activatedAt: "2026-01-01T00:00:00.000Z",
+      isActive: true,
+      status: "active",
+      currentPeriodEnd: null,
+      cancelAtPeriodEnd: false,
+      entitlements: []
+    }
+  },
+  presentationUser: {
+    id: "yatsu-theme-screenshot-user",
+    label: "trms",
+    username: "trms",
+    plan: "supporter"
+  },
+  sessionLikely: true,
+  loaded: true,
+  loading: false,
+  error: null
+};
 
 await main();
 
@@ -66,9 +102,11 @@ async function main() {
     });
     const assetMap = createAssetMap({ themes, bookPaths, appUrl: appServer.url });
 
+    await context.route("**/api/account/state", fulfillScreenshotAccountStateRoute);
     await context.route("**/__yatsu-theme-screenshot-assets/**", (route) =>
       fulfillAssetRoute(route, assetMap)
     );
+    await context.addInitScript(seedScreenshotAccountStateStorage, screenshotAccountState);
 
     const page = await context.newPage();
     const pageErrors = [];
@@ -92,7 +130,8 @@ async function main() {
         await captureLibraryScreenshot(page, {
           appUrl: appServer.url,
           bookCount: bookIds.length,
-          path: path.join(screenshotsDir, `${theme.id}-library.png`)
+          path: path.join(screenshotsDir, `${theme.id}-library.png`),
+          theme
         });
         screenshotCount += 1;
       }
@@ -101,7 +140,8 @@ async function main() {
         await captureReaderScreenshot(page, {
           appUrl: appServer.url,
           bookId: bookIds[0],
-          path: path.join(screenshotsDir, `${theme.id}-reader.png`)
+          path: path.join(screenshotsDir, `${theme.id}-reader.png`),
+          theme
         });
         screenshotCount += 1;
       }
@@ -252,6 +292,7 @@ async function fulfillAssetRoute(route, assetMap) {
 
 async function seedYatsuFixture(page, { appUrl, bookAssets }) {
   await page.goto(`${appUrl}/library`, { waitUntil: "domcontentloaded" });
+  await enableScreenshotSupporterMode(page);
 
   const result = await page.evaluate(async ({ assets }) => {
     const [store, replicator, factory, storageTypes] = await Promise.all([
@@ -342,6 +383,7 @@ async function applyTheme(page, { appUrl, themeAsset, themeId }) {
   }
 
   await page.goto(`${appUrl}/library`, { waitUntil: "domcontentloaded" });
+  await enableScreenshotSupporterMode(page);
   await page.evaluate(
     async ({ asset, fallbackName }) => {
       const [store, themeImport] = await Promise.all([
@@ -389,8 +431,8 @@ async function applyTheme(page, { appUrl, themeAsset, themeId }) {
   );
 }
 
-async function paintReaderHighlights(page, { bookId }) {
-  await page.evaluate(async ({ currentBookId }) => {
+async function paintReaderHighlights(page, { bookId, keepHighlightsRight = true }) {
+  await page.evaluate(async ({ currentBookId, shouldKeepHighlightsRight }) => {
     const [highlightManager, highlightColorData, store] = await Promise.all([
       import("/src/lib/components/book-reader/highlight-manager.ts"),
       import("/src/lib/data/highlight-colors.ts"),
@@ -398,11 +440,13 @@ async function paintReaderHighlights(page, { bookId }) {
     ]);
     const content = getVisibleReaderContent();
     const colorIds = highlightColorData.highlightColors.map((color) => color.id);
+    const minimumLeft = getReaderVisibleLeftBound(shouldKeepHighlightsRight);
     const snapshots = getReadableHighlightSnapshots(content, {
       colorCount: colorIds.length,
       highlightManager,
-      minimumLeft: getReaderVisibleLeftBound(),
-      preferredLength: 18
+      keepHighlightsRight: shouldKeepHighlightsRight,
+      minimumLeft,
+      preferredLength: 7
     });
     const book = await store.database.getData(currentBookId);
 
@@ -421,11 +465,7 @@ async function paintReaderHighlights(page, { bookId }) {
     }));
     const result = highlightManager.applyHighlights(content, highlights);
 
-    const renderedHighlightIds = new Set(
-      Array.from(content.querySelectorAll("mark.ttu-highlight[data-highlight-id]")).map((mark) =>
-        mark.getAttribute("data-highlight-id")
-      )
-    );
+    const renderedHighlightIds = getVisibleRenderedHighlightIds(content, minimumLeft);
 
     if (
       result.resolvedHighlights.length !== colorIds.length ||
@@ -444,7 +484,11 @@ async function paintReaderHighlights(page, { bookId }) {
       return content;
     }
 
-    function getReaderVisibleLeftBound() {
+    function getReaderVisibleLeftBound(keepRight) {
+      if (!keepRight) {
+        return Math.max(72, window.innerWidth * 0.18);
+      }
+
       return Math.min(window.innerWidth - 160, Math.max(360, window.innerWidth * 0.48));
     }
 
@@ -459,6 +503,7 @@ async function paintReaderHighlights(page, { bookId }) {
         });
         selectedCandidates = selectSpreadHighlightCandidates(candidates, {
           colorCount: options.colorCount,
+          keepHighlightsRight: options.keepHighlightsRight,
           minimumLeft
         });
 
@@ -473,18 +518,15 @@ async function paintReaderHighlights(page, { bookId }) {
     function collectReadableHighlightCandidates(root, { highlightManager, minimumLeft, preferredLength }) {
       const candidates = [];
       const textNodes = getReadableTextNodes(root);
-      let offset = 0;
 
       for (let index = 0; index < textNodes.length; index += 1) {
         const node = textNodes[index];
         const text = node.textContent || "";
         let start = findReadableStart(text, 0);
 
-        offset += text.length;
-
         while (start !== -1) {
           const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
-          const rect = range?.getBoundingClientRect();
+          const rect = range ? getSingleClientRect(range) : undefined;
 
           if (range && rect && isUsefulReadableRect(rect, minimumLeft)) {
             const snapshot = highlightManager.getHighlightSnapshotForRange(root, range);
@@ -492,6 +534,8 @@ async function paintReaderHighlights(page, { bookId }) {
             if (snapshot) {
               candidates.push({
                 centerX: rect.left + rect.width / 2,
+                centerY: rect.top + rect.height / 2,
+                rect: snapshotRect(rect),
                 snapshot
               });
             }
@@ -504,8 +548,8 @@ async function paintReaderHighlights(page, { bookId }) {
       return candidates;
     }
 
-    function selectSpreadHighlightCandidates(candidates, { colorCount, minimumLeft }) {
-      const targets = getHighlightTargetCenters({ colorCount, minimumLeft });
+    function selectSpreadHighlightCandidates(candidates, { colorCount, keepHighlightsRight, minimumLeft }) {
+      const targets = getHighlightTargetCenters({ colorCount, keepHighlightsRight, minimumLeft });
       const selected = [];
 
       for (const target of targets) {
@@ -522,11 +566,13 @@ async function paintReaderHighlights(page, { bookId }) {
       return selected;
     }
 
-    function getHighlightTargetCenters({ colorCount, minimumLeft }) {
+    function getHighlightTargetCenters({ colorCount, keepHighlightsRight, minimumLeft }) {
       const maxTarget = window.innerWidth - 72;
       const minTarget = Math.min(
         maxTarget - 40,
-        Math.max(minimumLeft + 84, window.innerWidth * 0.56)
+        keepHighlightsRight
+          ? Math.max(minimumLeft + 84, window.innerWidth * 0.56)
+          : Math.max(minimumLeft + 40, window.innerWidth * 0.28)
       );
 
       if (colorCount <= 1) {
@@ -549,11 +595,14 @@ async function paintReaderHighlights(page, { bookId }) {
         }
 
         const nearbySelectedPenalty = selected.some(
-          (selectedCandidate) => Math.abs(selectedCandidate.centerX - candidate.centerX) < 36
+          (selectedCandidate) => Math.abs(selectedCandidate.centerX - candidate.centerX) < 72
         )
-          ? 96
+          ? 192
           : 0;
-        const score = Math.abs(candidate.centerX - target) + nearbySelectedPenalty;
+        const score =
+          Math.abs(candidate.centerX - target) +
+          Math.abs(candidate.centerY - window.innerHeight * 0.5) * 0.08 +
+          nearbySelectedPenalty;
 
         if (score < bestScore) {
           bestCandidate = candidate;
@@ -573,8 +622,11 @@ async function paintReaderHighlights(page, { bookId }) {
     }
 
     function overlapsSelectedCandidate(candidate, selectedCandidates) {
-      return selectedCandidates.some((selectedCandidate) =>
-        snapshotsOverlap(candidate.snapshot, selectedCandidate.snapshot)
+      return selectedCandidates.some(
+        (selectedCandidate) =>
+          snapshotsOverlap(candidate.snapshot, selectedCandidate.snapshot) ||
+          rectsOverlap(candidate.rect, selectedCandidate.rect, 12) ||
+          Math.abs(selectedCandidate.centerX - candidate.centerX) < 42
       );
     }
 
@@ -582,6 +634,70 @@ async function paintReaderHighlights(page, { bookId }) {
       return (
         firstSnapshot.startOffset < secondSnapshot.endOffset &&
         firstSnapshot.endOffset > secondSnapshot.startOffset
+      );
+    }
+
+    function getVisibleRenderedHighlightIds(root, minimumLeft) {
+      const ids = new Set();
+
+      for (const mark of root.querySelectorAll("mark.ttu-highlight[data-highlight-id]")) {
+        const id = mark.getAttribute("data-highlight-id");
+
+        if (!id || !renderedMarkIsVisible(mark, minimumLeft)) {
+          continue;
+        }
+
+        ids.add(id);
+      }
+
+      return ids;
+    }
+
+    function renderedMarkIsVisible(mark, minimumLeft) {
+      const style = getComputedStyle(mark);
+
+      if (style.display === "none" || style.visibility === "hidden") {
+        return false;
+      }
+
+      return Array.from(mark.getClientRects()).some(
+        (rect) =>
+          rect.width > 0 &&
+          rect.height > 0 &&
+          rect.right >= minimumLeft &&
+          rect.left <= window.innerWidth - 24 &&
+          rect.bottom >= 0 &&
+          rect.top <= window.innerHeight
+      );
+    }
+
+    function getSingleClientRect(range) {
+      const rects = Array.from(range.getClientRects()).filter(
+        (rect) => rect.width > 0 && rect.height > 0
+      );
+
+      if (rects.length !== 1) {
+        return undefined;
+      }
+
+      return rects[0];
+    }
+
+    function snapshotRect(rect) {
+      return {
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top
+      };
+    }
+
+    function rectsOverlap(firstRect, secondRect, padding = 0) {
+      return (
+        firstRect.left - padding < secondRect.right &&
+        firstRect.right + padding > secondRect.left &&
+        firstRect.top - padding < secondRect.bottom &&
+        firstRect.bottom + padding > secondRect.top
       );
     }
 
@@ -635,12 +751,14 @@ async function paintReaderHighlights(page, { bookId }) {
 
       return -1;
     }
-  }, { currentBookId: bookId });
+  }, { currentBookId: bookId, shouldKeepHighlightsRight: keepHighlightsRight });
 }
 
-async function captureLibraryScreenshot(page, { appUrl, bookCount, path: screenshotPath }) {
+async function captureLibraryScreenshot(page, { appUrl, bookCount, path: screenshotPath, theme }) {
   await page.goto(`${appUrl}/library`, { waitUntil: "domcontentloaded" });
+  await enableScreenshotSupporterMode(page);
   await waitForLibrary(page, bookCount);
+  await waitForSupporterThemeRendering(page, { theme, view: "library" });
   await settlePageAssets(page);
   await page.screenshot({
     animations: "disabled",
@@ -649,13 +767,17 @@ async function captureLibraryScreenshot(page, { appUrl, bookCount, path: screens
   });
 }
 
-async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotPath }) {
+async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotPath, theme }) {
+  const showTableOfContents = !themeHasReaderBackgroundImage(theme);
+
   await page.goto(`${appUrl}/b?id=${bookId}`, { waitUntil: "domcontentloaded" });
+  await enableScreenshotSupporterMode(page);
   await waitForReaderContent(page);
   await advanceReaderToReadablePage(page);
-  await paintReaderHighlights(page, { bookId });
-  await openReaderTableOfContents(page);
-  await selectReaderText(page);
+  await setReaderTableOfContents(page, showTableOfContents);
+  await paintReaderHighlights(page, { bookId, keepHighlightsRight: showTableOfContents });
+  await selectReaderText(page, { keepSelectionRight: showTableOfContents });
+  await waitForSupporterThemeRendering(page, { theme, view: "reader" });
   await settlePageAssets(page);
   await page.screenshot({
     animations: "disabled",
@@ -664,12 +786,126 @@ async function captureReaderScreenshot(page, { appUrl, bookId, path: screenshotP
   });
 }
 
-async function openReaderTableOfContents(page) {
-  await page.evaluate(async () => {
-    const { tocIsOpen$ } = await import("/src/lib/components/book-reader/book-toc/book-toc.ts");
-    tocIsOpen$.next(true);
+function themeHasReaderBackgroundImage(theme) {
+  return Boolean(theme.backgroundImages?.reader?.url || theme.backgroundImages?.reader?.fileName);
+}
+
+async function fulfillScreenshotAccountStateRoute(route) {
+  await route.fulfill({
+    body: JSON.stringify({
+      auth: screenshotAccountState.auth,
+      billing: screenshotAccountState.billing
+    }),
+    contentType: "application/json",
+    status: 200
   });
-  await page.waitForSelector('[aria-label="Table of contents"]', { timeout: 10_000 });
+}
+
+function seedScreenshotAccountStateStorage(accountState) {
+  window.localStorage.setItem("yatsuAccountSessionLikely", "true");
+  window.localStorage.setItem(
+    "yatsuAccountPresentationUser",
+    JSON.stringify({
+      version: 2,
+      user: accountState.presentationUser
+    })
+  );
+}
+
+async function enableScreenshotSupporterMode(page) {
+  await page.evaluate(async ({ accountState }) => {
+    const { accountState$ } = await import("/src/lib/data/account-state.ts");
+
+    accountState$.next(accountState);
+  }, { accountState: screenshotAccountState });
+}
+
+async function waitForSupporterThemeRendering(page, { theme, view }) {
+  if (!theme.hasSupporterOnlySettings) {
+    return;
+  }
+
+  await page.waitForFunction(
+    ({ theme: currentTheme, view: currentView }) => {
+      const rootStyle = getComputedStyle(document.documentElement);
+      const supporterSettings = new Set(currentTheme.supporterOnlySettings || []);
+
+      if (
+        supporterSettings.has("extended theme colors") &&
+        !customHighlightColorsAreApplied(currentTheme, rootStyle)
+      ) {
+        return false;
+      }
+
+      if (currentTheme.backgroundImages?.[currentView] && !themeBackgroundImageIsApplied(rootStyle)) {
+        return false;
+      }
+
+      return true;
+
+      function customHighlightColorsAreApplied(themeOption, computedStyle) {
+        const highlightVariables = {
+          highlightYellowColor: "--highlight-yellow-fill",
+          highlightGreenColor: "--highlight-green-fill",
+          highlightBlueColor: "--highlight-blue-fill",
+          highlightPinkColor: "--highlight-pink-fill",
+          highlightPurpleColor: "--highlight-purple-fill"
+        };
+
+        return Object.entries(highlightVariables).every(([themeKey, variableName]) => {
+          const expectedColor = themeOption.theme?.[themeKey];
+
+          if (!expectedColor) {
+            return true;
+          }
+
+          return (
+            normalizeCssColor(computedStyle.getPropertyValue(variableName)) ===
+            normalizeCssColor(expectedColor)
+          );
+        });
+      }
+
+      function themeBackgroundImageIsApplied(computedStyle) {
+        const imageValue = computedStyle.getPropertyValue("--theme-background-image").trim();
+        const opacity = Number(computedStyle.getPropertyValue("--theme-background-image-opacity"));
+
+        return imageValue.startsWith("url(") && opacity > 0;
+      }
+
+      function normalizeCssColor(value) {
+        const probe = document.createElement("span");
+
+        probe.style.backgroundColor = value.trim();
+        document.body.append(probe);
+
+        const color = getComputedStyle(probe).backgroundColor.replace(/\s+/g, "").toLowerCase();
+
+        probe.remove();
+        return color;
+      }
+    },
+    { theme, view },
+    { timeout: 10_000 }
+  );
+}
+
+async function setReaderTableOfContents(page, isOpen) {
+  await page.evaluate(async ({ shouldOpen }) => {
+    const { tocIsOpen$ } = await import("/src/lib/components/book-reader/book-toc/book-toc.ts");
+    tocIsOpen$.next(shouldOpen);
+  }, { shouldOpen: isOpen });
+
+  if (isOpen) {
+    await page.waitForSelector('[aria-label="Table of contents"]', { timeout: 10_000 });
+  } else {
+    await page.waitForFunction(
+      () => !document.querySelector('[aria-label="Table of contents"]'),
+      undefined,
+      { timeout: 10_000 }
+    );
+  }
+
   await page.waitForTimeout(180);
 }
 
@@ -726,8 +962,8 @@ async function advanceReaderToReadablePage(page) {
   throw new Error("Unable to advance the real reader to a readable text page.");
 }
 
-async function selectReaderText(page) {
-  await page.evaluate(() => {
+async function selectReaderText(page, { keepSelectionRight = true } = {}) {
+  await page.evaluate(({ shouldKeepSelectionRight }) => {
     const content = document.querySelector(".book-content:not(.book-content-page-measure)");
 
     if (!(content instanceof HTMLElement)) {
@@ -735,43 +971,59 @@ async function selectReaderText(page) {
     }
 
     const range = getReadableRange(content, {
-      minimumLeft: getReaderVisibleLeftBound(),
+      minimumLeft: getReaderVisibleLeftBound(shouldKeepSelectionRight),
       minimumOffset: 0,
-      preferredLength: 10
+      preferredLength: 8
     });
     const selection = window.getSelection();
 
     selection?.removeAllRanges();
     selection?.addRange(range);
 
-    function getReaderVisibleLeftBound() {
+    function getReaderVisibleLeftBound(keepRight) {
+      if (!keepRight) {
+        return Math.max(72, window.innerWidth * 0.18);
+      }
+
       return Math.min(window.innerWidth - 160, Math.max(360, window.innerWidth * 0.48));
     }
 
     function getReadableRange(root, { minimumLeft, minimumOffset, preferredLength }) {
       const textNodes = getReadableTextNodes(root);
+      const highlightRects = getHighlightRects(root);
       const attempts = [minimumLeft, 0];
       let offset = 0;
 
-      for (const attemptedMinimumLeft of attempts) {
-        offset = 0;
+      for (const avoidHighlights of [true, false]) {
+        for (const attemptedMinimumLeft of attempts) {
+          offset = 0;
 
-        for (let index = 0; index < textNodes.length; index += 1) {
-          const node = textNodes[index];
-          const text = node.textContent || "";
-          let start = findReadableStart(text, offset >= minimumOffset ? 0 : minimumOffset - offset);
+          for (let index = 0; index < textNodes.length; index += 1) {
+            const node = textNodes[index];
+            const text = node.textContent || "";
+            let start = findReadableStart(
+              text,
+              offset >= minimumOffset ? 0 : minimumOffset - offset
+            );
 
-          offset += text.length;
+            offset += text.length;
 
-          while (start !== -1) {
-            const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
-            const rect = range?.getBoundingClientRect();
+            while (start !== -1) {
+              const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
+              const rect = range ? getSingleClientRect(range) : undefined;
 
-            if (range && rect && isUsefulReadableRect(rect, attemptedMinimumLeft)) {
-              return range;
+              if (
+                range &&
+                rect &&
+                isUsefulReadableRect(rect, attemptedMinimumLeft) &&
+                (!avoidHighlights ||
+                  !highlightRects.some((highlightRect) => rectsOverlap(rect, highlightRect, 18)))
+              ) {
+                return range;
+              }
+
+              start = findReadableStart(text, start + preferredLength + 4);
             }
-
-            start = findReadableStart(text, start + preferredLength + 4);
           }
         }
       }
@@ -785,6 +1037,44 @@ async function selectReaderText(page) {
       }
 
       return rect.right >= minimumLeft && rect.left <= window.innerWidth - 24;
+    }
+
+    function getHighlightRects(root) {
+      return Array.from(root.querySelectorAll("mark.ttu-highlight")).flatMap((mark) =>
+        Array.from(mark.getClientRects())
+          .filter((rect) => rect.width > 0 && rect.height > 0)
+          .map(snapshotRect)
+      );
+    }
+
+    function getSingleClientRect(range) {
+      const rects = Array.from(range.getClientRects()).filter(
+        (rect) => rect.width > 0 && rect.height > 0
+      );
+
+      if (rects.length !== 1) {
+        return undefined;
+      }
+
+      return rects[0];
+    }
+
+    function snapshotRect(rect) {
+      return {
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top
+      };
+    }
+
+    function rectsOverlap(firstRect, secondRect, padding = 0) {
+      return (
+        firstRect.left - padding < secondRect.right &&
+        firstRect.right + padding > secondRect.left &&
+        firstRect.top - padding < secondRect.bottom &&
+        firstRect.bottom + padding > secondRect.top
+      );
     }
 
     function getReadableTextNodes(root) {
@@ -837,7 +1127,7 @@ async function selectReaderText(page) {
 
       return -1;
     }
-  });
+  }, { shouldKeepSelectionRight: keepSelectionRight });
 }
 
 async function settlePageAssets(page) {
@@ -863,7 +1153,7 @@ async function startYatsuAppServer() {
   const url = `http://127.0.0.1:${port}`;
   const child = spawn(
     "pnpm",
-    ["--filter", "web", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
+    ["--filter", "web", "dev", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
     {
       cwd: yatsuAppDir,
       env: {
