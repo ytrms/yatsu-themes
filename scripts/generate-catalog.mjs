@@ -90,10 +90,10 @@ async function createCatalog({ writeFiles }) {
     const displayName = sanitizeName(metadata.name || payload.name || fallbackThemeName(fileName));
     const id = getUniqueId(slugify(metadata.slug || displayName || fileName), usedIds);
     const theme = getCompleteThemeOption(payload.theme || {});
-    const modeData = getThemeModeData(theme.backgroundColor);
+    const metadataTags = normalizeTags(metadata.tags || []);
+    const modeData = getThemeModeData(theme.backgroundColor, metadataTags);
     const mode = modeData.mode;
     const screenshots = await getThemeScreenshots(id);
-    const metadataTags = normalizeTags(metadata.tags || []);
     const isBuiltInTheme = metadataTags.includes("built-in");
     const supporterOnlySettings = isBuiltInTheme ? [] : getSupporterOnlySettings(payload);
     const backgroundImages = await extractBackgroundImages({
@@ -574,7 +574,16 @@ function mixColorExpressions(fromColor, toColor, weight, alpha) {
   )}, ${Math.round(fromB * inverseWeight + toB * weight)}, ${alpha})`;
 }
 
-function getThemeModeData(backgroundColor) {
+function getThemeModeData(backgroundColor, tags = []) {
+  const taggedModes = tags.filter((tag) => tag === "dark" || tag === "light");
+
+  if (taggedModes.length) {
+    return {
+      mode: taggedModes.includes("dark") ? "dark" : "light",
+      tags: taggedModes
+    };
+  }
+
   const luminance = getThemeColorLuminance(backgroundColor);
 
   if (!Number.isFinite(luminance)) {

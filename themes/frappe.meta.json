@@ -2,5 +2,8 @@
   "name": "Frappe",
   "description": "Inspired by catppuccin",
   "author": "Noemark",
+  "tags": [
+    "dark"
+  ],
   "submittedYatsuUsername": "mark"
 }
