@@ -1,8 +1,118 @@
 {
   "version": 1,
   "generatedAt": "",
-  "themeCount": 23,
+  "themeCount": 27,
   "themes": [
+    {
+      "id": "ashen-rain",
+      "name": "Ashen Rain",
+      "author": "Noemark",
+      "description": "",
+      "fileName": "ashen-rain.yatsutheme",
+      "downloadUrl": "/themes/ashen-rain.yatsutheme",
+      "sizeBytes": 1549913,
+      "contentHash": "e5fbc25259e9945d",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "background-image",
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(204, 204, 204, 0.9)",
+        "backgroundColor": "rgba(21, 21, 21, 1)",
+        "accentColor": "rgba(100, 116, 139, 1)",
+        "accentTextColor": "rgba(241, 245, 249, 1)",
+        "linkColor": "rgba(148, 163, 184, 0.87)",
+        "mutedTextColor": "rgba(156, 163, 175, 0.56)",
+        "readerChromeBackgroundColor": "rgba(31, 31, 31, 0.78)",
+        "readerChromeBorderColor": "rgba(39, 39, 42, 0.2)",
+        "selectionFontColor": "rgba(204, 204, 204, 1)",
+        "selectionBackgroundColor": "rgba(51, 65, 85, 0.5)",
+        "hintFuriganaShadowColor": "rgba(0, 0, 0, 0.3)",
+        "hintFuriganaFontColor": "rgba(102, 102, 102, 0.3306)",
+        "tooltipTextFontColor": "rgba(156, 163, 175, 1)",
+        "highlightYellowColor": "rgba(226, 177, 76, 0.34)",
+        "highlightGreenColor": "rgba(79, 154, 142, 0.34)",
+        "highlightBlueColor": "rgba(96, 165, 250, 0.3)",
+        "highlightPinkColor": "rgba(192, 132, 252, 0.28)",
+        "highlightPurpleColor": "rgba(159, 122, 234, 0.28)"
+      },
+      "backgroundImages": {
+        "reader": {
+          "url": "theme-assets/ashen-rain/reader-background.jpg",
+          "fileName": "Ashen Rain.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.4,
+          "blur": 7,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        },
+        "library": {
+          "url": "theme-assets/ashen-rain/library-background.jpg",
+          "fileName": "Ashen Rain.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.7,
+          "blur": 4,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        }
+      },
+      "screenshots": {
+        "library": "/screenshots/ashen-rain-library.jpg",
+        "reader": "/screenshots/ashen-rain-reader.jpg"
+      },
+      "hasBackgroundImages": true,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": true,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors",
+        "background image settings"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(21, 21, 21, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(204, 204, 204, 0.9)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(100, 116, 139, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(148, 163, 184, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(51, 65, 85, 0.5)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(226, 177, 76, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(96, 165, 250, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(192, 132, 252, 0.28)"
+        }
+      ]
+    },
     {
       "id": "ayu-dark",
       "name": "Ayu Dark",
@@ -899,6 +1009,116 @@
       ]
     },
     {
+      "id": "forgotten-memory",
+      "name": "Forgotten Memory",
+      "author": "Noemark",
+      "description": "",
+      "fileName": "forgotten-memory.yatsutheme",
+      "downloadUrl": "/themes/forgotten-memory.yatsutheme",
+      "sizeBytes": 1946379,
+      "contentHash": "feddfba079e98dd9",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "background-image",
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(228, 200, 255, 0.9)",
+        "backgroundColor": "rgba(24, 24, 37, 1)",
+        "accentColor": "rgba(198, 160, 246, 1)",
+        "accentTextColor": "rgba(245, 237, 255, 1)",
+        "linkColor": "rgba(179, 136, 255, 0.87)",
+        "mutedTextColor": "rgba(138, 122, 153, 0.56)",
+        "readerChromeBackgroundColor": "rgba(37, 37, 56, 0.78)",
+        "readerChromeBorderColor": "rgba(43, 47, 74, 0.2)",
+        "selectionFontColor": "rgba(228, 200, 255, 1)",
+        "selectionBackgroundColor": "rgba(42, 31, 61, 0.5)",
+        "hintFuriganaShadowColor": "rgba(0, 0, 0, 0.3)",
+        "hintFuriganaFontColor": "rgba(225, 196, 255, 0.3306)",
+        "tooltipTextFontColor": "rgba(191, 169, 214, 1)",
+        "highlightYellowColor": "rgba(242, 201, 76, 0.34)",
+        "highlightGreenColor": "rgba(111, 207, 151, 0.34)",
+        "highlightBlueColor": "rgba(122, 162, 247, 0.3)",
+        "highlightPinkColor": "rgba(247, 143, 179, 0.28)",
+        "highlightPurpleColor": "rgba(187, 134, 252, 0.28)"
+      },
+      "backgroundImages": {
+        "reader": {
+          "url": "theme-assets/forgotten-memory/reader-background.png",
+          "fileName": "Forgotten Memory 1.png",
+          "mediaType": "image/png",
+          "fit": "fill",
+          "opacity": 0.4,
+          "blur": 7,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        },
+        "library": {
+          "url": "theme-assets/forgotten-memory/library-background.jpg",
+          "fileName": "Forgotten Memory 2.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.7,
+          "blur": 4,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        }
+      },
+      "screenshots": {
+        "library": "/screenshots/forgotten-memory-library.jpg",
+        "reader": "/screenshots/forgotten-memory-reader.jpg"
+      },
+      "hasBackgroundImages": true,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": true,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors",
+        "background image settings"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(24, 24, 37, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(228, 200, 255, 0.9)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(198, 160, 246, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(179, 136, 255, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(42, 31, 61, 0.5)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(242, 201, 76, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(122, 162, 247, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(247, 143, 179, 0.28)"
+        }
+      ]
+    },
+    {
       "id": "frappe",
       "name": "Frappe",
       "author": "Noemark",
@@ -982,6 +1202,116 @@
         {
           "key": "highlightPinkColor",
           "color": "rgba(169, 184, 255, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "frozen-dusk",
+      "name": "Frozen Dusk",
+      "author": "Noemark",
+      "description": "",
+      "fileName": "frozen-dusk.yatsutheme",
+      "downloadUrl": "/themes/frozen-dusk.yatsutheme",
+      "sizeBytes": 261171,
+      "contentHash": "57b41033223cc260",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "background-image",
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(245, 237, 230, 0.9)",
+        "backgroundColor": "rgba(13, 19, 32, 1)",
+        "accentColor": "rgba(58, 74, 99, 1)",
+        "accentTextColor": "rgba(245, 237, 230, 1)",
+        "linkColor": "rgba(122, 162, 247, 0.87)",
+        "mutedTextColor": "rgba(107, 115, 133, 0.56)",
+        "readerChromeBackgroundColor": "rgba(21, 28, 44, 0.78)",
+        "readerChromeBorderColor": "rgba(42, 52, 70, 0.2)",
+        "selectionFontColor": "rgba(245, 237, 230, 1)",
+        "selectionBackgroundColor": "rgba(42, 52, 70, 0.5)",
+        "hintFuriganaShadowColor": "rgba(0, 0, 0, 0.3)",
+        "hintFuriganaFontColor": "rgba(32, 40, 57, 0.3306)",
+        "tooltipTextFontColor": "rgba(168, 176, 191, 1)",
+        "highlightYellowColor": "rgba(230, 161, 90, 0.34)",
+        "highlightGreenColor": "rgba(79, 175, 135, 0.34)",
+        "highlightBlueColor": "rgba(92, 134, 232, 0.3)",
+        "highlightPinkColor": "rgba(200, 107, 152, 0.28)",
+        "highlightPurpleColor": "rgba(99, 37, 243, 0.28)"
+      },
+      "backgroundImages": {
+        "reader": {
+          "url": "theme-assets/frozen-dusk/reader-background.jpg",
+          "fileName": "Frozen Dusk.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.4,
+          "blur": 7,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        },
+        "library": {
+          "url": "theme-assets/frozen-dusk/library-background.jpg",
+          "fileName": "Frozen Dusk.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.7,
+          "blur": 4,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        }
+      },
+      "screenshots": {
+        "library": "/screenshots/frozen-dusk-library.jpg",
+        "reader": "/screenshots/frozen-dusk-reader.jpg"
+      },
+      "hasBackgroundImages": true,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": true,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors",
+        "background image settings"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(13, 19, 32, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(245, 237, 230, 0.9)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(58, 74, 99, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(122, 162, 247, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(42, 52, 70, 0.5)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(230, 161, 90, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(92, 134, 232, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(200, 107, 152, 0.28)"
         }
       ]
     },
@@ -1330,6 +1660,116 @@
         {
           "key": "highlightPinkColor",
           "color": "rgba(159, 176, 255, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "midnight-stroll",
+      "name": "Midnight Stroll",
+      "author": "Noemark",
+      "description": "",
+      "fileName": "midnight-stroll.yatsutheme",
+      "downloadUrl": "/themes/midnight-stroll.yatsutheme",
+      "sizeBytes": 329934,
+      "contentHash": "7b808beded4eb421",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "background-image",
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(236, 240, 245, 0.9)",
+        "backgroundColor": "rgba(17, 27, 42, 1)",
+        "accentColor": "rgba(108, 142, 191, 1)",
+        "accentTextColor": "rgba(240, 244, 250, 1)",
+        "linkColor": "rgba(122, 162, 247, 0.87)",
+        "mutedTextColor": "rgba(127, 143, 166, 0.56)",
+        "readerChromeBackgroundColor": "rgba(22, 34, 51, 0.78)",
+        "readerChromeBorderColor": "rgba(42, 58, 82, 0.2)",
+        "selectionFontColor": "rgba(236, 240, 245, 1)",
+        "selectionBackgroundColor": "rgba(42, 63, 95, 0.5)",
+        "hintFuriganaShadowColor": "rgba(0, 0, 0, 0.3)",
+        "hintFuriganaFontColor": "rgba(228, 234, 241, 0.3306)",
+        "tooltipTextFontColor": "rgba(170, 182, 195, 1)",
+        "highlightYellowColor": "rgba(230, 195, 106, 0.34)",
+        "highlightGreenColor": "rgba(95, 191, 143, 0.34)",
+        "highlightBlueColor": "rgba(90, 141, 238, 0.3)",
+        "highlightPinkColor": "rgba(214, 127, 161, 0.28)",
+        "highlightPurpleColor": "rgba(154, 127, 209, 0.28)"
+      },
+      "backgroundImages": {
+        "reader": {
+          "url": "theme-assets/midnight-stroll/reader-background.jpg",
+          "fileName": "Midnight Stroll.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.4,
+          "blur": 7,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        },
+        "library": {
+          "url": "theme-assets/midnight-stroll/library-background.jpg",
+          "fileName": "Midnight Stroll.jpg",
+          "mediaType": "image/jpeg",
+          "fit": "fill",
+          "opacity": 0.7,
+          "blur": 4,
+          "overlayColor": "rgba(0, 0, 0, 1)",
+          "overlayOpacity": 0
+        }
+      },
+      "screenshots": {
+        "library": "/screenshots/midnight-stroll-library.jpg",
+        "reader": "/screenshots/midnight-stroll-reader.jpg"
+      },
+      "hasBackgroundImages": true,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": true,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors",
+        "background image settings"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(17, 27, 42, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(236, 240, 245, 0.9)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(108, 142, 191, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(122, 162, 247, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(42, 63, 95, 0.5)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(230, 195, 106, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(90, 141, 238, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(214, 127, 161, 0.28)"
         }
       ]
     },
