@@ -690,6 +690,15 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.theme-card-author {
+  color: var(--app-muted-fg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: -0.48rem 0 0;
+  overflow-wrap: anywhere;
+}
+
 .theme-mode-pill {
   border: 1px solid var(--border-color);
   border-radius: 999px;

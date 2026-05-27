@@ -16,6 +16,19 @@ const onlyThemeIds = process.argv
   .filter((argument) => argument.startsWith("--theme="))
   .map((argument) => argument.slice("--theme=".length).trim())
   .filter(Boolean);
+const validScreenshotViews = new Set(["library", "reader"]);
+const onlyViews = new Set(
+  process.argv
+    .filter((argument) => argument.startsWith("--view="))
+    .flatMap((argument) => argument.slice("--view=".length).split(","))
+    .map((view) => view.trim())
+    .filter(Boolean)
+);
+for (const view of onlyViews) {
+  if (!validScreenshotViews.has(view)) {
+    throw new Error(`Unsupported screenshot view "${view}". Use "library" or "reader".`);
+  }
+}
 const yatsuAppDir = path.resolve(process.env.YATSU_APP_DIR || path.join(rootDir, "..", "ebook-reader"));
 const explicitAppUrl = process.env.YATSU_APP_URL || "";
 const preferredAppPort = Number(process.env.YATSU_APP_PORT || 5174);
@@ -196,7 +209,11 @@ async function getThemesWithPendingScreenshots(themes) {
   for (const theme of themes) {
     const pendingViews = new Set();
 
-    for (const view of ["library", "reader"]) {
+    for (const view of validScreenshotViews) {
+      if (onlyViews.size && !onlyViews.has(view)) {
+        continue;
+      }
+
       const screenshotPath = getScreenshotPath(theme.id, view);
 
       if (force || !(await fileExists(screenshotPath))) {
@@ -453,6 +470,7 @@ async function paintReaderHighlights(page, { bookId, keepHighlightsRight = true 
       highlightManager,
       keepHighlightsRight: shouldKeepHighlightsRight,
       minimumLeft,
+      minimumReadableLength: 3,
       preferredLength: 7
     });
     const book = await store.database.getData(currentBookId);
@@ -522,7 +540,10 @@ async function paintReaderHighlights(page, { bookId, keepHighlightsRight = true 
       return selectedCandidates.map((candidate) => candidate.snapshot);
     }
 
-    function collectReadableHighlightCandidates(root, { highlightManager, minimumLeft, preferredLength }) {
+    function collectReadableHighlightCandidates(
+      root,
+      { highlightManager, minimumLeft, minimumReadableLength, preferredLength }
+    ) {
       const candidates = [];
       const textNodes = getReadableTextNodes(root);
 
@@ -535,7 +556,12 @@ async function paintReaderHighlights(page, { bookId, keepHighlightsRight = true 
           const range = buildRangeFromTextNodes(textNodes, index, start, preferredLength);
           const rect = range ? getSingleClientRect(range) : undefined;
 
-          if (range && rect && isUsefulReadableRect(rect, minimumLeft)) {
+          if (
+            range &&
+            getReadableCharacterCount(range.toString()) >= minimumReadableLength &&
+            rect &&
+            isUsefulReadableRect(rect, minimumLeft)
+          ) {
             const snapshot = highlightManager.getHighlightSnapshotForRange(root, range);
 
             if (snapshot) {
@@ -757,6 +783,12 @@ async function paintReaderHighlights(page, { bookId, keepHighlightsRight = true 
       }
 
       return -1;
+    }
+
+    function getReadableCharacterCount(text) {
+      return Array.from(text).filter((character) =>
+        /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(character)
+      ).length;
     }
   }, { currentBookId: bookId, shouldKeepHighlightsRight: keepHighlightsRight });
 }

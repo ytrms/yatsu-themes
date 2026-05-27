@@ -141,6 +141,7 @@ function renderThemeCard(theme) {
   populateThemePreview(preview, theme);
 
   node.querySelector("h2").textContent = theme.name;
+  node.querySelector(".theme-card-author").textContent = `by ${theme.author || "Unknown"}`;
   node.querySelector(".theme-description").textContent =
     theme.description || "A curated Yatsu Reader theme.";
   node.querySelector(".theme-mode-pill").textContent = formatThemeMode(theme);
@@ -313,13 +314,6 @@ function getPreviewStyle(theme) {
 function getMetaItems(theme) {
   return [
     theme.tags.includes("built-in") ? { label: "Built-in" } : undefined,
-    theme.hasSupporterOnlySettings
-      ? {
-          label: "Supporter settings",
-          className: "is-supporter",
-          title: "Full import uses settings available to Yatsu Supporters."
-        }
-      : undefined,
     theme.hasBackgroundImages ? { label: "Background image" } : undefined,
     theme.hasTypography ? { label: "Typography" } : undefined
   ].filter(Boolean);

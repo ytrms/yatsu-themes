@@ -1,8 +1,269 @@
 {
   "version": 1,
   "generatedAt": "",
-  "themeCount": 2,
+  "themeCount": 23,
   "themes": [
+    {
+      "id": "ayu-dark",
+      "name": "Ayu Dark",
+      "author": "Noemark",
+      "description": "Inspired by ayu palette",
+      "fileName": "ayu-dark.yatsutheme",
+      "downloadUrl": "/themes/ayu-dark.yatsutheme",
+      "sizeBytes": 645,
+      "contentHash": "85eeda2bdf335a0c",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(191, 189, 182, 0.87)",
+        "backgroundColor": "rgba(13, 16, 23, 1)",
+        "accentColor": "rgba(230, 180, 80, 1)",
+        "accentTextColor": "rgba(13, 16, 23, 1)",
+        "linkColor": "rgba(89, 194, 255, 0.87)",
+        "mutedTextColor": "rgba(90, 99, 120, 0.56)",
+        "readerChromeBackgroundColor": "rgba(16, 20, 28, 0.78)",
+        "readerChromeBorderColor": "rgba(27, 31, 41, 0.2)",
+        "selectionFontColor": "rgba(255, 255, 255, 1)",
+        "selectionBackgroundColor": "rgba(71, 82, 102, 1)",
+        "hintFuriganaShadowColor": "rgba(10, 0, 0, 0.3)",
+        "hintFuriganaFontColor": "rgba(90, 99, 120, 0.3306)",
+        "tooltipTextFontColor": "rgba(90, 99, 120, 0.6)",
+        "highlightYellowColor": "rgba(255, 180, 84, 0.34)",
+        "highlightGreenColor": "rgba(170, 217, 76, 0.34)",
+        "highlightBlueColor": "rgba(149, 230, 203, 0.3)",
+        "highlightPinkColor": "rgba(240, 113, 120, 0.28)",
+        "highlightPurpleColor": "rgba(210, 166, 255, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/ayu-dark-library.jpg",
+        "reader": "/screenshots/ayu-dark-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(13, 16, 23, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(191, 189, 182, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(230, 180, 80, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(89, 194, 255, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(71, 82, 102, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(255, 180, 84, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(149, 230, 203, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(240, 113, 120, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "ayu-light",
+      "name": "Ayu Light",
+      "author": "Noemark",
+      "description": "Inspired by ayu palette",
+      "fileName": "ayu-light.yatsutheme",
+      "downloadUrl": "/themes/ayu-light.yatsutheme",
+      "sizeBytes": 640,
+      "contentHash": "60055732d064f5e9",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(92, 97, 102, 0.87)",
+        "backgroundColor": "rgba(248, 249, 250, 1)",
+        "accentColor": "rgba(235, 164, 0, 1)",
+        "accentTextColor": "rgba(248, 249, 250, 1)",
+        "linkColor": "rgba(34, 164, 230, 0.87)",
+        "mutedTextColor": "rgba(130, 142, 159, 0.56)",
+        "readerChromeBackgroundColor": "rgba(252, 252, 252, 0.78)",
+        "readerChromeBorderColor": "rgba(107, 125, 143, 0.2)",
+        "selectionFontColor": "rgba(252, 252, 252, 1)",
+        "selectionBackgroundColor": "rgba(107, 125, 143, 1)",
+        "hintFuriganaShadowColor": "rgba(235, 238, 240, 0.3)",
+        "hintFuriganaFontColor": "rgba(130, 142, 159, 0.3306)",
+        "tooltipTextFontColor": "rgba(130, 142, 159, 0.6)",
+        "highlightYellowColor": "rgba(235, 164, 0, 0.34)",
+        "highlightGreenColor": "rgba(134, 179, 0, 0.34)",
+        "highlightBlueColor": "rgba(76, 191, 153, 0.3)",
+        "highlightPinkColor": "rgba(240, 113, 113, 0.28)",
+        "highlightPurpleColor": "rgba(163, 122, 204, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/ayu-light-library.jpg",
+        "reader": "/screenshots/ayu-light-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(248, 249, 250, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(92, 97, 102, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(235, 164, 0, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(34, 164, 230, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(107, 125, 143, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(235, 164, 0, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(76, 191, 153, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(240, 113, 113, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "ayu-mirage",
+      "name": "Ayu Mirage",
+      "author": "Noemark",
+      "description": "Inspired by ayu palette",
+      "fileName": "ayu-mirage.yatsutheme",
+      "downloadUrl": "/themes/ayu-mirage.yatsutheme",
+      "sizeBytes": 650,
+      "contentHash": "b7ae8323fa9532be",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(204, 202, 194, 0.87)",
+        "backgroundColor": "rgba(31, 36, 48, 1)",
+        "accentColor": "rgba(255, 204, 102, 1)",
+        "accentTextColor": "rgba(31, 36, 48, 1)",
+        "linkColor": "rgba(115, 208, 255, 0.87)",
+        "mutedTextColor": "rgba(112, 122, 140, 0.56)",
+        "readerChromeBackgroundColor": "rgba(36, 41, 54, 0.78)",
+        "readerChromeBorderColor": "rgba(23, 27, 36, 0.2)",
+        "selectionFontColor": "rgba(255, 255, 255, 1)",
+        "selectionBackgroundColor": "rgba(99, 117, 153, 1)",
+        "hintFuriganaShadowColor": "rgba(24, 28, 38, 0.3)",
+        "hintFuriganaFontColor": "rgba(112, 122, 140, 0.3306)",
+        "tooltipTextFontColor": "rgba(112, 122, 140, 0.6)",
+        "highlightYellowColor": "rgba(255, 205, 102, 0.34)",
+        "highlightGreenColor": "rgba(213, 255, 128, 0.34)",
+        "highlightBlueColor": "rgba(149, 230, 203, 0.3)",
+        "highlightPinkColor": "rgba(242, 135, 121, 0.28)",
+        "highlightPurpleColor": "rgba(223, 191, 255, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/ayu-mirage-library.jpg",
+        "reader": "/screenshots/ayu-mirage-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(31, 36, 48, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(204, 202, 194, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(255, 204, 102, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(115, 208, 255, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(99, 117, 153, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(255, 205, 102, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(149, 230, 203, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(242, 135, 121, 0.28)"
+        }
+      ]
+    },
     {
       "id": "bocchi",
       "name": "Bocchi",
@@ -116,6 +377,1058 @@
       ]
     },
     {
+      "id": "everforest-dark-hard",
+      "name": "Everforest Dark Hard",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-dark-hard.yatsutheme",
+      "downloadUrl": "/themes/everforest-dark-hard.yatsutheme",
+      "sizeBytes": 653,
+      "contentHash": "f49c3ab410242a06",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark",
+        "light"
+      ],
+      "tags": [
+        "dark",
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(211, 198, 170, 0.87)",
+        "backgroundColor": "rgba(43, 51, 57, 1)",
+        "accentColor": "rgba(127, 187, 179, 1)",
+        "accentTextColor": "rgba(43, 51, 57, 1)",
+        "linkColor": "rgba(131, 192, 146, 0.87)",
+        "mutedTextColor": "rgba(133, 146, 137, 0.56)",
+        "readerChromeBackgroundColor": "rgba(50, 60, 65, 0.78)",
+        "readerChromeBorderColor": "rgba(79, 91, 88, 0.2)",
+        "selectionFontColor": "rgba(211, 198, 170, 1)",
+        "selectionBackgroundColor": "rgba(79, 91, 88, 1)",
+        "hintFuriganaShadowColor": "rgba(30, 35, 38, 0.3)",
+        "hintFuriganaFontColor": "rgba(133, 146, 137, 0.3306)",
+        "tooltipTextFontColor": "rgba(157, 169, 160, 0.6)",
+        "highlightYellowColor": "rgba(219, 188, 127, 0.34)",
+        "highlightGreenColor": "rgba(167, 192, 128, 0.34)",
+        "highlightBlueColor": "rgba(127, 187, 179, 0.3)",
+        "highlightPinkColor": "rgba(230, 126, 128, 0.28)",
+        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-dark-hard-library.jpg",
+        "reader": "/screenshots/everforest-dark-hard-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(43, 51, 57, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(211, 198, 170, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(127, 187, 179, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(131, 192, 146, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(79, 91, 88, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(219, 188, 127, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(127, 187, 179, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(230, 126, 128, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "everforest-light-hard",
+      "name": "Everforest Light Hard",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-light-hard.yatsutheme",
+      "downloadUrl": "/themes/everforest-light-hard.yatsutheme",
+      "sizeBytes": 656,
+      "contentHash": "d8953aa3e0817aeb",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(92, 106, 114, 0.87)",
+        "backgroundColor": "rgba(253, 246, 227, 1)",
+        "accentColor": "rgba(86, 157, 121, 1)",
+        "accentTextColor": "rgba(253, 246, 227, 1)",
+        "linkColor": "rgba(95, 155, 147, 0.87)",
+        "mutedTextColor": "rgba(147, 159, 145, 0.56)",
+        "readerChromeBackgroundColor": "rgba(243, 234, 211, 0.78)",
+        "readerChromeBorderColor": "rgba(211, 198, 170, 0.2)",
+        "selectionFontColor": "rgba(253, 246, 227, 1)",
+        "selectionBackgroundColor": "rgba(189, 195, 175, 1)",
+        "hintFuriganaShadowColor": "rgba(244, 240, 217, 0.3)",
+        "hintFuriganaFontColor": "rgba(147, 159, 145, 0.3306)",
+        "tooltipTextFontColor": "rgba(130, 145, 129, 0.6)",
+        "highlightYellowColor": "rgba(223, 160, 0, 0.34)",
+        "highlightGreenColor": "rgba(141, 161, 1, 0.34)",
+        "highlightBlueColor": "rgba(95, 155, 147, 0.3)",
+        "highlightPinkColor": "rgba(248, 85, 82, 0.28)",
+        "highlightPurpleColor": "rgba(223, 105, 186, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-light-hard-library.jpg",
+        "reader": "/screenshots/everforest-light-hard-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(253, 246, 227, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(92, 106, 114, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(86, 157, 121, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(95, 155, 147, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(189, 195, 175, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(223, 160, 0, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(95, 155, 147, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(248, 85, 82, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "everforest-medium-dark",
+      "name": "Everforest Medium Dark",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-medium-dark.yatsutheme",
+      "downloadUrl": "/themes/everforest-medium-dark.yatsutheme",
+      "sizeBytes": 652,
+      "contentHash": "d413426f94b97d87",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark",
+        "light"
+      ],
+      "tags": [
+        "dark",
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(211, 198, 170, 0.87)",
+        "backgroundColor": "rgba(45, 53, 59, 1)",
+        "accentColor": "rgba(127, 187, 179, 1)",
+        "accentTextColor": "rgba(45, 53, 59, 1)",
+        "linkColor": "rgba(131, 192, 146, 0.87)",
+        "mutedTextColor": "rgba(133, 146, 137, 0.56)",
+        "readerChromeBackgroundColor": "rgba(52, 63, 68, 0.78)",
+        "readerChromeBorderColor": "rgba(71, 82, 88, 0.2)",
+        "selectionFontColor": "rgba(211, 198, 170, 1)",
+        "selectionBackgroundColor": "rgba(71, 82, 88, 1)",
+        "hintFuriganaShadowColor": "rgba(35, 42, 46, 0.3)",
+        "hintFuriganaFontColor": "rgba(133, 146, 137, 0.3306)",
+        "tooltipTextFontColor": "rgba(157, 169, 160, 0.6)",
+        "highlightYellowColor": "rgba(219, 188, 127, 0.34)",
+        "highlightGreenColor": "rgba(167, 192, 128, 0.34)",
+        "highlightBlueColor": "rgba(127, 187, 179, 0.3)",
+        "highlightPinkColor": "rgba(230, 126, 128, 0.28)",
+        "highlightPurpleColor": "rgba(214, 153, 182, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-medium-dark-library.jpg",
+        "reader": "/screenshots/everforest-medium-dark-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(45, 53, 59, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(211, 198, 170, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(127, 187, 179, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(131, 192, 146, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(71, 82, 88, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(219, 188, 127, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(127, 187, 179, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(230, 126, 128, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "everforest-medium-light",
+      "name": "Everforest Medium Light",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-medium-light.yatsutheme",
+      "downloadUrl": "/themes/everforest-medium-light.yatsutheme",
+      "sizeBytes": 654,
+      "contentHash": "a0ecc773d86db3c8",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(92, 106, 114, 0.87)",
+        "backgroundColor": "rgba(253, 246, 227, 1)",
+        "accentColor": "rgba(58, 148, 197, 1)",
+        "accentTextColor": "rgba(253, 246, 227, 1)",
+        "linkColor": "rgba(53, 167, 124, 0.87)",
+        "mutedTextColor": "rgba(147, 159, 145, 0.56)",
+        "readerChromeBackgroundColor": "rgba(244, 240, 217, 0.78)",
+        "readerChromeBorderColor": "rgba(224, 220, 199, 0.2)",
+        "selectionFontColor": "rgba(253, 246, 227, 1)",
+        "selectionBackgroundColor": "rgba(224, 220, 199, 1)",
+        "hintFuriganaShadowColor": "rgba(239, 235, 212, 0.3)",
+        "hintFuriganaFontColor": "rgba(147, 159, 145, 0.3306)",
+        "tooltipTextFontColor": "rgba(130, 145, 129, 0.6)",
+        "highlightYellowColor": "rgba(223, 160, 0, 0.34)",
+        "highlightGreenColor": "rgba(141, 161, 1, 0.34)",
+        "highlightBlueColor": "rgba(58, 148, 197, 0.3)",
+        "highlightPinkColor": "rgba(248, 85, 82, 0.28)",
+        "highlightPurpleColor": "rgba(223, 105, 186, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-medium-light-library.jpg",
+        "reader": "/screenshots/everforest-medium-light-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(253, 246, 227, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(92, 106, 114, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(58, 148, 197, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(53, 167, 124, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(224, 220, 199, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(223, 160, 0, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(58, 148, 197, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(248, 85, 82, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "everforest-soft-dark",
+      "name": "Everforest Soft Dark",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-soft-dark.yatsutheme",
+      "downloadUrl": "/themes/everforest-soft-dark.yatsutheme",
+      "sizeBytes": 653,
+      "contentHash": "da57f5302e9eff71",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark",
+        "light"
+      ],
+      "tags": [
+        "dark",
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(211, 198, 170, 0.87)",
+        "backgroundColor": "rgba(51, 60, 67, 1)",
+        "accentColor": "rgba(127, 187, 179, 1)",
+        "accentTextColor": "rgba(51, 60, 67, 1)",
+        "linkColor": "rgba(131, 192, 146, 0.87)",
+        "mutedTextColor": "rgba(133, 146, 137, 0.56)",
+        "readerChromeBackgroundColor": "rgba(58, 70, 76, 0.78)",
+        "readerChromeBorderColor": "rgba(77, 89, 96, 0.2)",
+        "selectionFontColor": "rgba(211, 198, 170, 1)",
+        "selectionBackgroundColor": "rgba(77, 89, 96, 1)",
+        "hintFuriganaShadowColor": "rgba(41, 49, 54, 0.3)",
+        "hintFuriganaFontColor": "rgba(133, 146, 137, 0.3306)",
+        "tooltipTextFontColor": "rgba(157, 169, 160, 0.6)",
+        "highlightYellowColor": "rgba(219, 188, 127, 0.34)",
+        "highlightGreenColor": "rgba(167, 192, 128, 0.34)",
+        "highlightBlueColor": "rgba(127, 187, 179, 0.3)",
+        "highlightPinkColor": "rgba(230, 126, 128, 0.28)",
+        "highlightPurpleColor": "rgba(214, 153, 182, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-soft-dark-library.jpg",
+        "reader": "/screenshots/everforest-soft-dark-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(51, 60, 67, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(211, 198, 170, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(127, 187, 179, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(131, 192, 146, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(77, 89, 96, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(219, 188, 127, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(127, 187, 179, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(230, 126, 128, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "everforest-soft-light",
+      "name": "Everforest Soft Light",
+      "author": "Noemark",
+      "description": "Inspired by everforest palette",
+      "fileName": "everforest-soft-light.yatsutheme",
+      "downloadUrl": "/themes/everforest-soft-light.yatsutheme",
+      "sizeBytes": 652,
+      "contentHash": "cc6427244da304bd",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(92, 106, 114, 0.87)",
+        "backgroundColor": "rgba(243, 234, 211, 1)",
+        "accentColor": "rgba(58, 148, 197, 1)",
+        "accentTextColor": "rgba(243, 234, 211, 1)",
+        "linkColor": "rgba(53, 167, 124, 0.87)",
+        "mutedTextColor": "rgba(147, 159, 145, 0.56)",
+        "readerChromeBackgroundColor": "rgba(234, 228, 202, 0.78)",
+        "readerChromeBorderColor": "rgba(221, 216, 190, 0.2)",
+        "selectionFontColor": "rgba(243, 234, 211, 1)",
+        "selectionBackgroundColor": "rgba(221, 216, 190, 1)",
+        "hintFuriganaShadowColor": "rgba(239, 229, 197, 0.3)",
+        "hintFuriganaFontColor": "rgba(147, 159, 145, 0.3306)",
+        "tooltipTextFontColor": "rgba(130, 145, 129, 0.6)",
+        "highlightYellowColor": "rgba(223, 160, 0, 0.34)",
+        "highlightGreenColor": "rgba(141, 161, 1, 0.34)",
+        "highlightBlueColor": "rgba(58, 148, 197, 0.3)",
+        "highlightPinkColor": "rgba(248, 85, 82, 0.28)",
+        "highlightPurpleColor": "rgba(223, 105, 186, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/everforest-soft-light-library.jpg",
+        "reader": "/screenshots/everforest-soft-light-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(243, 234, 211, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(92, 106, 114, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(58, 148, 197, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(53, 167, 124, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(221, 216, 190, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(223, 160, 0, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(58, 148, 197, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(248, 85, 82, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "frappe",
+      "name": "Frappe",
+      "author": "Noemark",
+      "description": "Inspired by catppuccin",
+      "fileName": "frappe.yatsutheme",
+      "downloadUrl": "/themes/frappe.yatsutheme",
+      "sizeBytes": 648,
+      "contentHash": "b48a5f44ab530bc0",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark",
+        "light"
+      ],
+      "tags": [
+        "dark",
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(198, 208, 245, 0.87)",
+        "backgroundColor": "rgba(48, 52, 70, 1)",
+        "accentColor": "rgba(140, 170, 238, 1)",
+        "accentTextColor": "rgba(35, 38, 52, 1)",
+        "linkColor": "rgba(153, 209, 219, 0.87)",
+        "mutedTextColor": "rgba(165, 173, 206, 0.56)",
+        "readerChromeBackgroundColor": "rgba(65, 69, 89, 0.78)",
+        "readerChromeBorderColor": "rgba(98, 104, 128, 0.2)",
+        "selectionFontColor": "rgba(35, 38, 52, 1)",
+        "selectionBackgroundColor": "rgba(140, 170, 238, 1)",
+        "hintFuriganaShadowColor": "rgba(35, 38, 52, 0.3)",
+        "hintFuriganaFontColor": "rgba(198, 208, 245, 0.3306)",
+        "tooltipTextFontColor": "rgba(181, 191, 226, 0.6)",
+        "highlightYellowColor": "rgba(243, 201, 105, 0.34)",
+        "highlightGreenColor": "rgba(143, 216, 168, 0.34)",
+        "highlightBlueColor": "rgba(103, 214, 209, 0.3)",
+        "highlightPinkColor": "rgba(169, 184, 255, 0.28)",
+        "highlightPurpleColor": "rgba(240, 148, 158, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/frappe-library.jpg",
+        "reader": "/screenshots/frappe-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(48, 52, 70, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(198, 208, 245, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(140, 170, 238, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(153, 209, 219, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(140, 170, 238, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(243, 201, 105, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(103, 214, 209, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(169, 184, 255, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "gruvbox-dark",
+      "name": "Gruvbox Dark",
+      "author": "Noemark",
+      "description": "Inspired by gruvbox palette",
+      "fileName": "gruvbox-dark.yatsutheme",
+      "downloadUrl": "/themes/gruvbox-dark.yatsutheme",
+      "sizeBytes": 646,
+      "contentHash": "2f7e1b9b46768791",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(235, 219, 178, 0.87)",
+        "backgroundColor": "rgba(40, 40, 40, 1)",
+        "accentColor": "rgba(69, 133, 136, 1)",
+        "accentTextColor": "rgba(235, 219, 178, 1)",
+        "linkColor": "rgba(131, 165, 152, 0.87)",
+        "mutedTextColor": "rgba(146, 131, 116, 0.56)",
+        "readerChromeBackgroundColor": "rgba(50, 48, 47, 0.78)",
+        "readerChromeBorderColor": "rgba(80, 73, 69, 0.2)",
+        "selectionFontColor": "rgba(235, 219, 178, 1)",
+        "selectionBackgroundColor": "rgba(102, 92, 84, 1)",
+        "hintFuriganaShadowColor": "rgba(29, 32, 33, 0.3)",
+        "hintFuriganaFontColor": "rgba(146, 131, 116, 0.3306)",
+        "tooltipTextFontColor": "rgba(168, 153, 132, 0.6)",
+        "highlightYellowColor": "rgba(215, 153, 33, 0.34)",
+        "highlightGreenColor": "rgba(152, 151, 26, 0.34)",
+        "highlightBlueColor": "rgba(131, 165, 152, 0.3)",
+        "highlightPinkColor": "rgba(204, 36, 29, 0.28)",
+        "highlightPurpleColor": "rgba(177, 98, 134, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/gruvbox-dark-library.jpg",
+        "reader": "/screenshots/gruvbox-dark-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(40, 40, 40, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(235, 219, 178, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(69, 133, 136, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(131, 165, 152, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(102, 92, 84, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(215, 153, 33, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(131, 165, 152, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(204, 36, 29, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "gruvbox-light",
+      "name": "Gruvbox Light",
+      "author": "Noemark",
+      "description": "Inspired by gruvbox palette",
+      "fileName": "gruvbox-light.yatsutheme",
+      "downloadUrl": "/themes/gruvbox-light.yatsutheme",
+      "sizeBytes": 657,
+      "contentHash": "d900946a1572a153",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(60, 56, 54, 0.87)",
+        "backgroundColor": "rgba(251, 241, 199, 1)",
+        "accentColor": "rgba(69, 133, 136, 1)",
+        "accentTextColor": "rgba(251, 241, 199, 1)",
+        "linkColor": "rgba(7, 102, 120, 0.87)",
+        "mutedTextColor": "rgba(146, 131, 116, 0.56)",
+        "readerChromeBackgroundColor": "rgba(242, 229, 188, 0.78)",
+        "readerChromeBorderColor": "rgba(213, 196, 161, 0.2)",
+        "selectionFontColor": "rgba(251, 241, 199, 1)",
+        "selectionBackgroundColor": "rgba(189, 174, 147, 1)",
+        "hintFuriganaShadowColor": "rgba(249, 245, 215, 0.3)",
+        "hintFuriganaFontColor": "rgba(146, 131, 116, 0.3306)",
+        "tooltipTextFontColor": "rgba(124, 111, 100, 0.6)",
+        "highlightYellowColor": "rgba(215, 153, 33, 0.34)",
+        "highlightGreenColor": "rgba(152, 151, 26, 0.34)",
+        "highlightBlueColor": "rgba(7, 102, 120, 0.3)",
+        "highlightPinkColor": "rgba(204, 36, 29, 0.28)",
+        "highlightPurpleColor": "rgba(143, 63, 113, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/gruvbox-light-library.jpg",
+        "reader": "/screenshots/gruvbox-light-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(251, 241, 199, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(60, 56, 54, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(69, 133, 136, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(7, 102, 120, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(189, 174, 147, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(215, 153, 33, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(7, 102, 120, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(204, 36, 29, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "latte",
+      "name": "Latte",
+      "author": "Noemark",
+      "description": "Inspired by catppuccin",
+      "fileName": "latte.yatsutheme",
+      "downloadUrl": "/themes/latte.yatsutheme",
+      "sizeBytes": 653,
+      "contentHash": "96060b4c2d38ec7f",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(76, 79, 105, 0.87)",
+        "backgroundColor": "rgba(239, 241, 245, 1)",
+        "accentColor": "rgba(114, 135, 253, 1)",
+        "accentTextColor": "rgba(239, 241, 245, 1)",
+        "linkColor": "rgba(30, 102, 245, 0.87)",
+        "mutedTextColor": "rgba(108, 111, 133, 0.56)",
+        "readerChromeBackgroundColor": "rgba(230, 233, 239, 0.78)",
+        "readerChromeBorderColor": "rgba(188, 192, 204, 0.2)",
+        "selectionFontColor": "rgba(239, 241, 245, 1)",
+        "selectionBackgroundColor": "rgba(114, 135, 253, 1)",
+        "hintFuriganaShadowColor": "rgba(220, 224, 232, 0.3)",
+        "hintFuriganaFontColor": "rgba(76, 79, 105, 0.3306)",
+        "tooltipTextFontColor": "rgba(92, 95, 119, 0.6)",
+        "highlightYellowColor": "rgba(249, 199, 79, 0.34)",
+        "highlightGreenColor": "rgba(102, 217, 163, 0.34)",
+        "highlightBlueColor": "rgba(61, 214, 208, 0.3)",
+        "highlightPinkColor": "rgba(143, 167, 255, 0.28)",
+        "highlightPurpleColor": "rgba(255, 123, 134, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/latte-library.jpg",
+        "reader": "/screenshots/latte-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(239, 241, 245, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(76, 79, 105, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(114, 135, 253, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(30, 102, 245, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(114, 135, 253, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(249, 199, 79, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(61, 214, 208, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(143, 167, 255, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "macchiato",
+      "name": "Macchiato",
+      "author": "Noemark",
+      "description": "Inspired by catppuccin",
+      "fileName": "macchiato.yatsutheme",
+      "downloadUrl": "/themes/macchiato.yatsutheme",
+      "sizeBytes": 644,
+      "contentHash": "7daf3911b0cdef7a",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(202, 211, 245, 0.87)",
+        "backgroundColor": "rgba(36, 39, 58, 1)",
+        "accentColor": "rgba(138, 173, 244, 1)",
+        "accentTextColor": "rgba(36, 39, 58, 1)",
+        "linkColor": "rgba(138, 173, 244, 0.87)",
+        "mutedTextColor": "rgba(165, 173, 203, 0.56)",
+        "readerChromeBackgroundColor": "rgba(54, 58, 79, 0.78)",
+        "readerChromeBorderColor": "rgba(110, 115, 141, 0.2)",
+        "selectionFontColor": "rgba(202, 211, 245, 1)",
+        "selectionBackgroundColor": "rgba(73, 77, 100, 1)",
+        "hintFuriganaShadowColor": "rgba(24, 25, 38, 0.3)",
+        "hintFuriganaFontColor": "rgba(24, 25, 38, 0.3306)",
+        "tooltipTextFontColor": "rgba(184, 192, 224, 0.6)",
+        "highlightYellowColor": "rgba(245, 207, 106, 0.34)",
+        "highlightGreenColor": "rgba(144, 224, 176, 0.34)",
+        "highlightBlueColor": "rgba(98, 221, 215, 0.3)",
+        "highlightPinkColor": "rgba(159, 176, 255, 0.28)",
+        "highlightPurpleColor": "rgba(243, 160, 173, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/macchiato-library.jpg",
+        "reader": "/screenshots/macchiato-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(36, 39, 58, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(202, 211, 245, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(138, 173, 244, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(138, 173, 244, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(73, 77, 100, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(245, 207, 106, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(98, 221, 215, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(159, 176, 255, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "mocha",
+      "name": "Mocha",
+      "author": "Noemark",
+      "description": "Inspired by catppuccin",
+      "fileName": "mocha.yatsutheme",
+      "downloadUrl": "/themes/mocha.yatsutheme",
+      "sizeBytes": 645,
+      "contentHash": "4e4404347afd9819",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(205, 214, 244, 0.87)",
+        "backgroundColor": "rgba(30, 30, 46, 1)",
+        "accentColor": "rgba(180, 190, 254, 1)",
+        "accentTextColor": "rgba(30, 30, 46, 1)",
+        "linkColor": "rgba(137, 180, 250, 0.87)",
+        "mutedTextColor": "rgba(166, 173, 200, 0.56)",
+        "readerChromeBackgroundColor": "rgba(49, 50, 68, 0.78)",
+        "readerChromeBorderColor": "rgba(69, 71, 90, 0.2)",
+        "selectionFontColor": "rgba(30, 30, 46, 1)",
+        "selectionBackgroundColor": "rgba(127, 132, 156, 1)",
+        "hintFuriganaShadowColor": "rgba(17, 17, 27, 0.3)",
+        "hintFuriganaFontColor": "rgba(166, 173, 200, 0.3306)",
+        "tooltipTextFontColor": "rgba(186, 194, 222, 0.6)",
+        "highlightYellowColor": "rgba(249, 226, 175, 0.34)",
+        "highlightGreenColor": "rgba(166, 227, 161, 0.34)",
+        "highlightBlueColor": "rgba(137, 180, 250, 0.3)",
+        "highlightPinkColor": "rgba(245, 194, 231, 0.28)",
+        "highlightPurpleColor": "rgba(203, 166, 247, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/mocha-library.jpg",
+        "reader": "/screenshots/mocha-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(30, 30, 46, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(205, 214, 244, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(180, 190, 254, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(137, 180, 250, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(127, 132, 156, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(249, 226, 175, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(137, 180, 250, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(245, 194, 231, 0.28)"
+        }
+      ]
+    },
+    {
       "id": "momoaji",
       "name": "MOMOaji",
       "author": "ryzusaku",
@@ -199,6 +1512,525 @@
         {
           "key": "highlightPinkColor",
           "color": "rgba(255, 163, 175, 0.5)"
+        }
+      ]
+    },
+    {
+      "id": "rose-pine",
+      "name": "Rose Pine",
+      "author": "Noemark",
+      "description": "Inspired by rose pine palette",
+      "fileName": "rose-pine.yatsutheme",
+      "downloadUrl": "/themes/rose-pine.yatsutheme",
+      "sizeBytes": 647,
+      "contentHash": "aa16be6c2d57e395",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(224, 222, 244, 0.87)",
+        "backgroundColor": "rgba(25, 23, 36, 1)",
+        "accentColor": "rgba(196, 167, 231, 1)",
+        "accentTextColor": "rgba(25, 23, 36, 1)",
+        "linkColor": "rgba(156, 207, 216, 0.87)",
+        "mutedTextColor": "rgba(110, 106, 134, 0.56)",
+        "readerChromeBackgroundColor": "rgba(31, 29, 46, 0.78)",
+        "readerChromeBorderColor": "rgba(64, 61, 82, 0.2)",
+        "selectionFontColor": "rgba(25, 23, 36, 1)",
+        "selectionBackgroundColor": "rgba(82, 79, 103, 1)",
+        "hintFuriganaShadowColor": "rgba(38, 35, 58, 0.3)",
+        "hintFuriganaFontColor": "rgba(110, 106, 134, 0.3306)",
+        "tooltipTextFontColor": "rgba(144, 140, 170, 0.6)",
+        "highlightYellowColor": "rgba(246, 193, 119, 0.34)",
+        "highlightGreenColor": "rgba(49, 116, 143, 0.34)",
+        "highlightBlueColor": "rgba(156, 207, 216, 0.3)",
+        "highlightPinkColor": "rgba(235, 111, 146, 0.28)",
+        "highlightPurpleColor": "rgba(196, 167, 231, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/rose-pine-library.jpg",
+        "reader": "/screenshots/rose-pine-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(25, 23, 36, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(224, 222, 244, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(196, 167, 231, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(156, 207, 216, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(82, 79, 103, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(246, 193, 119, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(156, 207, 216, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(235, 111, 146, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "rose-pine-dawn",
+      "name": "Rose Pine Dawn",
+      "author": "Noemark",
+      "description": "Inspired by rose pine dawn palette",
+      "fileName": "rose-pine-dawn.yatsutheme",
+      "downloadUrl": "/themes/rose-pine-dawn.yatsutheme",
+      "sizeBytes": 645,
+      "contentHash": "6e529ce92d6acd35",
+      "updatedAt": "",
+      "mode": "light",
+      "modes": [
+        "light"
+      ],
+      "tags": [
+        "light",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(87, 82, 121, 0.87)",
+        "backgroundColor": "rgba(250, 244, 237, 1)",
+        "accentColor": "rgba(144, 122, 169, 1)",
+        "accentTextColor": "rgba(250, 244, 237, 1)",
+        "linkColor": "rgba(86, 148, 159, 0.87)",
+        "mutedTextColor": "rgba(152, 147, 165, 0.56)",
+        "readerChromeBackgroundColor": "rgba(255, 250, 243, 0.78)",
+        "readerChromeBorderColor": "rgba(223, 218, 217, 0.2)",
+        "selectionFontColor": "rgba(250, 244, 237, 1)",
+        "selectionBackgroundColor": "rgba(223, 218, 217, 1)",
+        "hintFuriganaShadowColor": "rgba(242, 233, 225, 0.3)",
+        "hintFuriganaFontColor": "rgba(152, 147, 165, 0.3306)",
+        "tooltipTextFontColor": "rgba(121, 117, 147, 0.6)",
+        "highlightYellowColor": "rgba(234, 157, 52, 0.34)",
+        "highlightGreenColor": "rgba(40, 105, 131, 0.34)",
+        "highlightBlueColor": "rgba(86, 148, 159, 0.3)",
+        "highlightPinkColor": "rgba(215, 130, 126, 0.28)",
+        "highlightPurpleColor": "rgba(144, 122, 169, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/rose-pine-dawn-library.jpg",
+        "reader": "/screenshots/rose-pine-dawn-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(250, 244, 237, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(87, 82, 121, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(144, 122, 169, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(86, 148, 159, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(223, 218, 217, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(234, 157, 52, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(86, 148, 159, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(215, 130, 126, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "rose-pine-moon",
+      "name": "Rose Pine Moon",
+      "author": "Noemark",
+      "description": "Inspired by rose pine moon palette",
+      "fileName": "rose-pine-moon.yatsutheme",
+      "downloadUrl": "/themes/rose-pine-moon.yatsutheme",
+      "sizeBytes": 647,
+      "contentHash": "813afcc0ddac1cb2",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(224, 222, 244, 0.87)",
+        "backgroundColor": "rgba(35, 33, 54, 1)",
+        "accentColor": "rgba(196, 167, 231, 1)",
+        "accentTextColor": "rgba(35, 33, 54, 1)",
+        "linkColor": "rgba(156, 207, 216, 0.87)",
+        "mutedTextColor": "rgba(110, 106, 134, 0.56)",
+        "readerChromeBackgroundColor": "rgba(42, 39, 63, 0.78)",
+        "readerChromeBorderColor": "rgba(57, 53, 82, 0.2)",
+        "selectionFontColor": "rgba(35, 33, 54, 1)",
+        "selectionBackgroundColor": "rgba(68, 65, 90, 1)",
+        "hintFuriganaShadowColor": "rgba(42, 39, 63, 0.3)",
+        "hintFuriganaFontColor": "rgba(110, 106, 134, 0.3306)",
+        "tooltipTextFontColor": "rgba(144, 140, 170, 0.6)",
+        "highlightYellowColor": "rgba(246, 193, 119, 0.34)",
+        "highlightGreenColor": "rgba(62, 143, 176, 0.34)",
+        "highlightBlueColor": "rgba(156, 207, 216, 0.3)",
+        "highlightPinkColor": "rgba(234, 154, 151, 0.28)",
+        "highlightPurpleColor": "rgba(196, 167, 231, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/rose-pine-moon-library.jpg",
+        "reader": "/screenshots/rose-pine-moon-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(35, 33, 54, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(224, 222, 244, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(196, 167, 231, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(156, 207, 216, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(68, 65, 90, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(246, 193, 119, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(156, 207, 216, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(234, 154, 151, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "sepia",
+      "name": "Sepia",
+      "author": "ゝ葉",
+      "description": "dark sepia theme",
+      "fileName": "sepia.yatsutheme",
+      "downloadUrl": "/themes/sepia.yatsutheme",
+      "sizeBytes": 408,
+      "contentHash": "87d3098e27482202",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(255, 255, 255, 0.6)",
+        "backgroundColor": "rgba(24, 21, 12, 1)",
+        "accentColor": "rgba(212, 217, 220, 0.9)",
+        "accentTextColor": "rgba(15, 23, 42, 0.98)",
+        "linkColor": "rgba(255, 255, 255, 0.6)",
+        "mutedTextColor": "rgba(0, 0, 0, 0.56)",
+        "readerChromeBackgroundColor": "rgba(66, 63, 56, 0.86)",
+        "readerChromeBorderColor": "rgba(79, 77, 70, 0.2)",
+        "selectionFontColor": "rgba(15, 23, 42, 0.98)",
+        "selectionBackgroundColor": "rgba(212, 217, 220, 0.9)",
+        "hintFuriganaShadowColor": "rgba(240, 240, 241, 0.3)",
+        "hintFuriganaFontColor": "rgba(255, 255, 255, 0.3306)",
+        "tooltipTextFontColor": "rgba(255, 255, 255, 0.6)",
+        "highlightYellowColor": "rgba(250, 204, 21, 0.34)",
+        "highlightGreenColor": "rgba(34, 197, 94, 0.34)",
+        "highlightBlueColor": "rgba(59, 130, 246, 0.3)",
+        "highlightPinkColor": "rgba(236, 72, 153, 0.28)",
+        "highlightPurpleColor": "rgba(139, 92, 246, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/sepia-library.jpg",
+        "reader": "/screenshots/sepia-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": false,
+      "supporterOnlySettings": [],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(24, 21, 12, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(255, 255, 255, 0.6)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(212, 217, 220, 0.9)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(255, 255, 255, 0.6)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(212, 217, 220, 0.9)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(250, 204, 21, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(59, 130, 246, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(236, 72, 153, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-night-dark",
+      "name": "Tokyo Night Dark",
+      "author": "Noemark",
+      "description": "Inspired by tokyo night palette",
+      "fileName": "tokyo-night-dark.yatsutheme",
+      "downloadUrl": "/themes/tokyo-night-dark.yatsutheme",
+      "sizeBytes": 651,
+      "contentHash": "6da54208d6341d2b",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(192, 202, 245, 0.87)",
+        "backgroundColor": "rgba(26, 27, 38, 1)",
+        "accentColor": "rgba(122, 162, 247, 1)",
+        "accentTextColor": "rgba(26, 27, 38, 1)",
+        "linkColor": "rgba(42, 195, 222, 0.87)",
+        "mutedTextColor": "rgba(86, 95, 137, 0.56)",
+        "readerChromeBackgroundColor": "rgba(36, 40, 59, 0.78)",
+        "readerChromeBorderColor": "rgba(65, 72, 104, 0.2)",
+        "selectionFontColor": "rgba(192, 202, 245, 1)",
+        "selectionBackgroundColor": "rgba(65, 72, 104, 1)",
+        "hintFuriganaShadowColor": "rgba(22, 22, 30, 0.3)",
+        "hintFuriganaFontColor": "rgba(86, 95, 137, 0.3306)",
+        "tooltipTextFontColor": "rgba(154, 165, 206, 0.6)",
+        "highlightYellowColor": "rgba(224, 175, 104, 0.34)",
+        "highlightGreenColor": "rgba(158, 206, 106, 0.34)",
+        "highlightBlueColor": "rgba(115, 218, 202, 0.3)",
+        "highlightPinkColor": "rgba(247, 118, 142, 0.28)",
+        "highlightPurpleColor": "rgba(187, 154, 247, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/tokyo-night-dark-library.jpg",
+        "reader": "/screenshots/tokyo-night-dark-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(26, 27, 38, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(192, 202, 245, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(122, 162, 247, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(42, 195, 222, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(65, 72, 104, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(224, 175, 104, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(115, 218, 202, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(247, 118, 142, 0.28)"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-night-storm",
+      "name": "Tokyo Night Storm",
+      "author": "Noemark",
+      "description": "Inspired by tokyo night palette",
+      "fileName": "tokyo-night-storm.yatsutheme",
+      "downloadUrl": "/themes/tokyo-night-storm.yatsutheme",
+      "sizeBytes": 650,
+      "contentHash": "bb7e5cd89c0a42cc",
+      "updatedAt": "",
+      "mode": "dark",
+      "modes": [
+        "dark"
+      ],
+      "tags": [
+        "dark",
+        "supporter-settings",
+        "typography"
+      ],
+      "theme": {
+        "fontColor": "rgba(192, 202, 245, 0.87)",
+        "backgroundColor": "rgba(36, 40, 59, 1)",
+        "accentColor": "rgba(122, 162, 247, 1)",
+        "accentTextColor": "rgba(192, 202, 245, 1)",
+        "linkColor": "rgba(115, 218, 203, 0.87)",
+        "mutedTextColor": "rgba(154, 165, 206, 0.56)",
+        "readerChromeBackgroundColor": "rgba(47, 53, 73, 0.78)",
+        "readerChromeBorderColor": "rgba(65, 72, 104, 0.2)",
+        "selectionFontColor": "rgba(192, 202, 245, 1)",
+        "selectionBackgroundColor": "rgba(65, 72, 104, 1)",
+        "hintFuriganaShadowColor": "rgba(31, 35, 53, 0.3)",
+        "hintFuriganaFontColor": "rgba(0, 0, 0, 0.3306)",
+        "tooltipTextFontColor": "rgba(169, 177, 214, 0.6)",
+        "highlightYellowColor": "rgba(224, 175, 104, 0.34)",
+        "highlightGreenColor": "rgba(224, 175, 104, 0.34)",
+        "highlightBlueColor": "rgba(42, 195, 222, 0.3)",
+        "highlightPinkColor": "rgba(247, 118, 142, 0.28)",
+        "highlightPurpleColor": "rgba(187, 154, 247, 0.28)"
+      },
+      "backgroundImages": {},
+      "screenshots": {
+        "library": "/screenshots/tokyo-night-storm-library.jpg",
+        "reader": "/screenshots/tokyo-night-storm-reader.jpg"
+      },
+      "hasBackgroundImages": false,
+      "hasScreenshots": true,
+      "hasBackgroundImageSettings": false,
+      "hasSupporterOnlySettings": true,
+      "supporterOnlySettings": [
+        "extended theme colors"
+      ],
+      "hasTypography": true,
+      "swatches": [
+        {
+          "key": "backgroundColor",
+          "color": "rgba(36, 40, 59, 1)"
+        },
+        {
+          "key": "fontColor",
+          "color": "rgba(192, 202, 245, 0.87)"
+        },
+        {
+          "key": "accentColor",
+          "color": "rgba(122, 162, 247, 1)"
+        },
+        {
+          "key": "linkColor",
+          "color": "rgba(115, 218, 203, 0.87)"
+        },
+        {
+          "key": "selectionBackgroundColor",
+          "color": "rgba(65, 72, 104, 1)"
+        },
+        {
+          "key": "highlightYellowColor",
+          "color": "rgba(224, 175, 104, 0.34)"
+        },
+        {
+          "key": "highlightBlueColor",
+          "color": "rgba(42, 195, 222, 0.3)"
+        },
+        {
+          "key": "highlightPinkColor",
+          "color": "rgba(247, 118, 142, 0.28)"
         }
       ]
     }
